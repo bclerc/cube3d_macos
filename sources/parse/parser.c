@@ -1,0 +1,39 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parser.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: bclerc <bclerc@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/02/08 11:55:21 by bclerc            #+#    #+#             */
+/*   Updated: 2021/02/08 13:38:29 by bclerc           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+# include "../../includes/cube3d.h"
+
+void	dispatch(t_cube *cube, char *line)
+{
+	int i;
+	int valid;
+
+	i = 0;
+	def_path(cube, line);
+	while (line[i])
+	{
+		if (line[i] == 'R')
+			valid = param_r(cube, line);
+		i++;
+	}
+}
+
+int		init_cube(t_cube *cube)
+{
+	char *line;
+	while (get_next_line(cube->fd, &line) == 1)
+	{
+		dispatch(cube, line);
+		free(line);
+	}
+	return (1);
+}
