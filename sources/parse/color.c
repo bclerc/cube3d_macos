@@ -1,42 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parser.c                                           :+:      :+:    :+:   */
+/*   color.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bclerc <bclerc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/02/08 11:55:21 by bclerc            #+#    #+#             */
-/*   Updated: 2021/02/08 16:09:08 by bclerc           ###   ########.fr       */
+/*   Created: 2021/02/08 14:16:44 by bclerc            #+#    #+#             */
+/*   Updated: 2021/02/08 16:11:08 by bclerc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "../../includes/cube3d.h"
 
-void	dispatch(t_cube *cube, char *line)
+int set_color(int r, int g, int b, t_color *loc)
 {
-	int i;
-	int valid;
-
-	i = 0;
-	def_path(cube, line);
-	while (line[i])
-	{
-			
-		if (line[i] == 'R')
-			valid = param_r(cube, line);
-		if (line[i] == 'F' || line[i] == 'C')
-			valid = get_color(cube, line);;
-		i++;
-	}
+	loc->r = r;
+	loc->g = g;
+	loc->b = b;
+	loc->a = 0;
+	return (1);
 }
 
-int		init_cube(t_cube *cube)
+int	get_color(t_cube *cube, char *line)
 {
-	char *line;
-	while (get_next_line(cube->fd, &line) == 1)
-	{
-		dispatch(cube, line);
-		free(line);
-	}
+	char	**tab;
+	int		i;
+
+	i = 1;
+	while (line[i] == ' ')
+		i++;
+		set_color(ft_atoi(tab[0]), ft_atoi(tab[1]), ft_atoi(tab[2]), &cube->G_COLOR);
+	else
+		set_color(ft_atoi(tab[0]), ft_atoi(tab[1]), ft_atoi(tab[2]), &cube->R_COLOR);
 	return (1);
 }

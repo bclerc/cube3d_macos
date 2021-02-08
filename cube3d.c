@@ -6,7 +6,7 @@
 /*   By: bclerc <bclerc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/08 11:38:52 by bclerc            #+#    #+#             */
-/*   Updated: 2021/02/08 13:50:34 by bclerc           ###   ########.fr       */
+/*   Updated: 2021/02/08 16:06:29 by bclerc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,7 @@ int main(int argc, char **argv)
 	clean_param(&cube);
 	cube.fd = open(argv[1], O_RDONLY);
 	if (argc > 2)
-	{
-		printf("Erreur: trop d'arguments");
 		return 0;
-	}
 	if (fd < 0)
 	{
 		printf("Erreur: FD %s incorrect", argv[1]);
