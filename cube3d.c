@@ -6,7 +6,7 @@
 /*   By: bclerc <bclerc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/08 11:38:52 by bclerc            #+#    #+#             */
-/*   Updated: 2021/02/08 16:06:29 by bclerc           ###   ########.fr       */
+/*   Updated: 2021/02/08 16:41:35 by bclerc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,14 @@ void clean_param(t_cube *cube)
 	cube->R_Y = 0;	
 }
 
-
+void kill_c(t_cube *cube)
+{
+	free(cube->WE);
+	free(cube->NO);
+	free(cube->SO);
+	free(cube->EA);
+	free(cube->SPRITE);
+}
 int main(int argc, char **argv)
 {
 	int fd;
@@ -35,4 +42,7 @@ int main(int argc, char **argv)
 	}
 	init_cube(&cube);
 	printf("X: %d, Y: %d\nNO: %s\nSO %s\nWE %s\nEA %s\nS %s", cube.R_X, cube.R_Y, cube.NO, cube.SO, cube.WE, cube.EA, cube.SPRITE);
+	printf("\nF %d, %d, %d\nC %d, %d, %d\n", cube.G_COLOR.r, cube.G_COLOR.g, cube.G_COLOR.b, cube.R_COLOR.r, cube.R_COLOR.g, cube.R_COLOR.b);
+	kill_c(&cube);
+	while (1);
 }

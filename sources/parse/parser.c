@@ -6,7 +6,7 @@
 /*   By: bclerc <bclerc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/08 11:55:21 by bclerc            #+#    #+#             */
-/*   Updated: 2021/02/08 16:09:08 by bclerc           ###   ########.fr       */
+/*   Updated: 2021/02/08 16:53:32 by bclerc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,5 +38,6 @@ int		init_cube(t_cube *cube)
 		dispatch(cube, line);
 		free(line);
 	}
+	free(line);
 	return (1);
 }

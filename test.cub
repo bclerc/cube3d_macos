@@ -6,4 +6,4 @@ EA ./path_to_the_east_texture
 
 S ./path_to_the_sprite_texture
 F 124,30,221
-C 255,30,0
+C 255,30,13
