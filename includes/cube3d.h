@@ -6,7 +6,7 @@
 /*   By: bclerc <bclerc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/08 11:35:47 by bclerc            #+#    #+#             */
-/*   Updated: 2021/02/08 16:11:19 by bclerc           ###   ########.fr       */
+/*   Updated: 2021/02/09 14:45:45 by bclerc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,25 +27,38 @@ typedef struct s_color
 	
 }				t_color;
 
+typedef	struct	s_map
+{
+	int parsed;
+	int max_x;
+	int max_y;
+	char **coord;
+}				t_map;
 
 /// cast int t_color
 typedef	struct	s_cube
 {	
 	int fd;
+	int fd_map;
+	int fd_map2;
 	int R_X;
 	int	R_Y;
 	t_color G_COLOR;
 	t_color R_COLOR;
+	t_map 	*map;	
 	char *NO;
 	char *SO;
 	char *WE;
 	char *EA;
 	char *SPRITE;
+	char *file_name;
 
 }				t_cube;
 
 int init_cube(t_cube *cube);
+int	first_read(t_cube *cube);
 int	param_r(t_cube *cube, char *line);
+int	parse_map(t_cube *cube);
 int get_color(t_cube *cube, char *line);
 int	def_path(t_cube *cube, char *line);
 int	param_path(char *line, char **path);
