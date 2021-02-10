@@ -6,7 +6,7 @@
 /*   By: bclerc <bclerc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/08 11:38:52 by bclerc            #+#    #+#             */
-/*   Updated: 2021/02/09 16:35:12 by bclerc           ###   ########.fr       */
+/*   Updated: 2021/02/10 13:51:01 by bclerc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,7 @@ int main(int argc, char **argv)
 		printf(">>> %s\n",  cube.map->coord[q]);
 		q++;
 	}
+	check_map(&cube);
 	kill_c(&cube);
 	kill_m(&map);
 }
