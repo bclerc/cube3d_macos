@@ -6,11 +6,23 @@
 /*   By: bclerc <bclerc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/09 11:04:18 by bclerc            #+#    #+#             */
-/*   Updated: 2021/02/10 16:04:05 by bclerc           ###   ########.fr       */
+/*   Updated: 2021/02/11 15:48:20 by bclerc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "../../includes/cube3d.h"
+
+int is_player(t_cube *cube, char c, int x, int y)
+{
+	if (c == 'N' || c == 'S' || c == 'E' || c == 'W')
+	{
+		cube->player->check = 1;
+		cube->player->x = x;
+		cube->player->y = y;
+		cube->player->view = c;
+	}
+	return (1);
+}
 
 int is_map(char *line)
 {

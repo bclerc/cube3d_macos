@@ -6,7 +6,7 @@
 /*   By: bclerc <bclerc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/10 14:23:55 by bclerc            #+#    #+#             */
-/*   Updated: 2021/02/10 16:04:24 by bclerc           ###   ########.fr       */
+/*   Updated: 2021/02/11 15:11:49 by bclerc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,8 @@ void print_map(t_map *map, int x, int y)
 void map_error(t_map *map, int x, int y)
 {
 	printf("Error\n");
-	printf("\033[0;31mMap\033[0m: Error surround line ");
-	printf("\033[0;31m%d\033[0m column \033[0;31m%d\033[0m.\n", y + 1, x + 1);
-	printf("----> ");
+	printf("---------------- Error surround line ");
+	printf("\033[0;31m%d\033[0m column \033[0;31m%d\033[0m ----------------\n", y + 1, x + 1);
 	print_map(map, x, y);
 	exit(-1);
 }

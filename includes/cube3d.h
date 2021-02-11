@@ -6,7 +6,7 @@
 /*   By: bclerc <bclerc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/08 11:35:47 by bclerc            #+#    #+#             */
-/*   Updated: 2021/02/10 16:01:09 by bclerc           ###   ########.fr       */
+/*   Updated: 2021/02/11 15:20:04 by bclerc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,16 @@ typedef struct s_color
 	
 }				t_color;
 
+typedef struct	s_player
+{
+	int x;
+	int y;
+	int life;
+	int shied;
+	char view;
+	int check;
+}				t_player;
+
 typedef	struct	s_map
 {
 	int parsed;
@@ -47,6 +57,7 @@ typedef	struct	s_cube
 	t_color G_COLOR;
 	t_color R_COLOR;
 	t_map 	*map;	
+	t_player *player;
 	char *NO;
 	char *SO;
 	char *WE;
