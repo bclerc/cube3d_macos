@@ -6,7 +6,7 @@
 /*   By: bclerc <bclerc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/15 12:47:39 by bclerc            #+#    #+#             */
-/*   Updated: 2021/02/15 15:06:14 by bclerc           ###   ########.fr       */
+/*   Updated: 2021/02/15 17:15:37 by bclerc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,45 @@ void	pixel_put(t_mlx *mlx, int x, int y, int color)
 
 	*(unsigned int*)&mlx->img_data[x * mlx->size_line + y * (mlx->bpp/ 8)] = color;
 	
+}
+
+void	drawSqr(t_mlx *mlx, int y, int x, int size, int color)
+{	
+	int *img;
+	int i;
+	int j;
+
+	j = 0;
+	while (j < 1080)
+	{
+		i = 0;
+		while (i < 1080)
+		{
+			if (i >= x && j >=y && i < x + size && j < y + size)
+				pixel_put(mlx, i, j, color);
+			i++;
+		}
+		j++;
+	}
+}
+
+void	clear(t_mlx *mlx, int color)
+{	
+	int *img;
+	int i;
+	int j;
+
+	j = 0;
+	while (j < 1080)
+	{
+		i = 0;
+		while (i < 1080)
+		{
+				pixel_put(mlx, i, j, color);
+			i++;
+		}
+		j++;
+	}
 }
 
 

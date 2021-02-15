@@ -6,7 +6,7 @@
 /*   By: bclerc <bclerc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/08 11:35:47 by bclerc            #+#    #+#             */
-/*   Updated: 2021/02/15 15:04:38 by bclerc           ###   ########.fr       */
+/*   Updated: 2021/02/15 17:15:50 by bclerc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,11 +86,12 @@ typedef	struct	s_cube
 
 }				t_cube;
 
-
+void	drawSqr(t_mlx *mlx, int x, int y, int size, int color);
 void	drawRect(t_mlx *x, int x1, int y1, int x2, int y2, int color);
 void	drawLine(t_mlx *x, int x1, int y1, int x2, int y2, int color);
 void	pixel_put(t_mlx *mlx, int x, int y, int color);
 int		init_cube(t_cube *cube);
+void	clear(t_mlx *mlx, int color);
 int		first_read(t_cube *cube);
 int		param_r(t_cube *cube, char *line);
 int		parse_map(t_cube *cube);
