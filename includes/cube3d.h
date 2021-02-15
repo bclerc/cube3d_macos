@@ -6,7 +6,7 @@
 /*   By: bclerc <bclerc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/08 11:35:47 by bclerc            #+#    #+#             */
-/*   Updated: 2021/02/11 15:20:04 by bclerc           ###   ########.fr       */
+/*   Updated: 2021/02/15 15:04:38 by bclerc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,24 @@
 # include "gnl/get_next_line.h"
 # include "minilibx/mlx.h"
 # include <stdio.h>
+
+typedef struct	s_vector
+{
+	int x;
+	int y;
+}				t_vector;
+
+typedef struct	s_mlx
+{
+	void *mlx;
+	void *win;
+	void *img_ptr;
+	void *img_data;
+	int	size_line;
+	int	bpp;
+	int endian;
+
+}				t_mlx;	
 
 typedef struct s_color
 {
@@ -54,6 +72,7 @@ typedef	struct	s_cube
 	int fd_map2;
 	int R_X;
 	int	R_Y;
+	t_mlx *mlx;
 	t_color G_COLOR;
 	t_color R_COLOR;
 	t_map 	*map;	
@@ -67,6 +86,10 @@ typedef	struct	s_cube
 
 }				t_cube;
 
+
+void	drawRect(t_mlx *x, int x1, int y1, int x2, int y2, int color);
+void	drawLine(t_mlx *x, int x1, int y1, int x2, int y2, int color);
+void	pixel_put(t_mlx *mlx, int x, int y, int color);
 int		init_cube(t_cube *cube);
 int		first_read(t_cube *cube);
 int		param_r(t_cube *cube, char *line);

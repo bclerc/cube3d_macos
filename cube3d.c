@@ -6,7 +6,7 @@
 /*   By: bclerc <bclerc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/08 11:38:52 by bclerc            #+#    #+#             */
-/*   Updated: 2021/02/11 15:01:33 by bclerc           ###   ########.fr       */
+/*   Updated: 2021/02/15 15:19:29 by bclerc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,12 +40,29 @@ void kill_c(t_cube *cube)
 	free(cube->SPRITE);
 }
 
+int	deal_key(int key, t_cube *cube)
+{
+	printf("key %d\n", key);
+	if (key == 123)
+		cube->player->x-=1;
+	if (key == 125)
+		cube->player->y+=1;
+	if (key == 126)
+		cube->player->y-=1;
+	if (key == 124)
+		cube->player->x+=1;
+
+	pixel_put(cube->mlx, cube->player->y, cube->player->x-0.05, 0xFFFFFF);
+	mlx_put_image_to_window(cube->mlx->mlx, cube->mlx->win, cube->mlx->img_ptr, 0,0);
+	return (1);
+}
+
 int main(int argc, char **argv)
 {
 	int fd;
 	t_cube cube;
 	t_map map;
-	
+	t_mlx mlx;
 	cube.map = &map;
 	cube.file_name = argv[1];
 	clean_param(&cube);
@@ -72,6 +89,38 @@ int main(int argc, char **argv)
 		printf(">>> %s\n",  cube.map->coord[q]);
 		q++;
 	}
+	int bpp;
+	int size_line;
+	int endian;
+	mlx.mlx = mlx_init(); 
+	mlx.win = mlx_new_window(mlx.mlx,1080,1080, "Cube3d");
+	mlx.img_ptr = mlx_new_image(mlx.mlx, 1080, 1080); // 800 = width ; 600 = height
+	mlx.img_data =  mlx_get_data_addr(mlx.img_ptr, &bpp, &size_line, &endian);
+	mlx.bpp = bpp;
+	mlx.size_line = size_line;
+	mlx.endian = endian;
+	float px, py;
+	//Draw player
+	cube.mlx = &mlx;
+	drawLine(cube.mlx, 0,0 , 150 , 150, 0xFFFFFF);
+	mlx_put_image_to_window(mlx.mlx, mlx.win, mlx.img_ptr, 0, 0);
+	cube.player->x = 500;
+	cube.player->y = 500;
+	mlx_key_hook(mlx.win, deal_key, &cube);
+	mlx_loop(mlx.mlx);
+
+
+
+
+
+
+
+
+
+
+
+
+
 	check_map(&cube);
 	kill_c(&cube);
 	kill_m(&map);
