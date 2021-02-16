@@ -6,7 +6,7 @@
 /*   By: bclerc <bclerc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/08 11:38:52 by bclerc            #+#    #+#             */
-/*   Updated: 2021/02/15 17:16:15 by bclerc           ###   ########.fr       */
+/*   Updated: 2021/02/16 11:20:22 by bclerc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,8 +95,8 @@ int main(int argc, char **argv)
 	int size_line;
 	int endian;
 	mlx.mlx = mlx_init(); 
-	mlx.win = mlx_new_window(mlx.mlx,1920,1080, "Cube3d");
-	mlx.img_ptr = mlx_new_image(mlx.mlx, 1920, 1080); // 800 = width ; 600 = height
+	mlx.win = mlx_new_window(mlx.mlx,920,920, "Cube3d");
+	mlx.img_ptr = mlx_new_image(mlx.mlx, 920, 920); // 800 = width ; 600 = height
 	mlx.img_data =  mlx_get_data_addr(mlx.img_ptr, &bpp, &size_line, &endian);
 	mlx.bpp = bpp;
 	mlx.size_line = size_line;
@@ -114,7 +114,7 @@ int main(int argc, char **argv)
 		{
 			if (cube.map->coord[y][x] - '0' == 1)
 			{
-				drawSqr(cube.mlx, x*150, y*150, 150, 0xFFFFFF);
+				drawSqr(cube.mlx, x*20, y*20, 20, 0xFFFFFF);
 				printf("x, y");
 			}
 			x++;
