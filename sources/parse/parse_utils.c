@@ -6,7 +6,7 @@
 /*   By: bclerc <bclerc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/09 12:04:08 by bclerc            #+#    #+#             */
-/*   Updated: 2021/02/11 15:00:09 by bclerc           ###   ########.fr       */
+/*   Updated: 2021/02/17 16:06:22 by bclerc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void check_zero(t_map *map, int x, int y)
 	char **coord;
 
 	coord = map->coord;
-	if (x == 0 || y == 0 || y + 1 == map->max_y)
+	if (x == 0 || y == 0 || y + 1 == *map->max_y)
 		map_error(map, x, y);
 	if (!coord[y][x + 1] || !coord[y + 1][x])
 		map_error(map, x, y);

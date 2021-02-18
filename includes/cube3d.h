@@ -6,7 +6,7 @@
 /*   By: bclerc <bclerc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/08 11:35:47 by bclerc            #+#    #+#             */
-/*   Updated: 2021/02/15 17:15:50 by bclerc           ###   ########.fr       */
+/*   Updated: 2021/02/18 16:03:06 by bclerc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,13 @@
 # include "gnl/get_next_line.h"
 # include "minilibx/mlx.h"
 # include <stdio.h>
-
+# define heigth 1080
+# define width	1920
+# define k_up  126
+# define k_down 125
+# define k_left 123
+# define k_right 124
+ 
 typedef struct	s_vector
 {
 	int x;
@@ -33,6 +39,10 @@ typedef struct	s_mlx
 	int	size_line;
 	int	bpp;
 	int endian;
+	int up;
+	int down;
+	int left;
+	int right;
 
 }				t_mlx;	
 
@@ -48,8 +58,8 @@ typedef struct s_color
 
 typedef struct	s_player
 {
-	int x;
-	int y;
+	double x;
+	double y;
 	int life;
 	int shied;
 	char view;
@@ -59,14 +69,18 @@ typedef struct	s_player
 typedef	struct	s_map
 {
 	int parsed;
-	int max_x;
-	int max_y;
+	int *max_x;
+	int *max_y;
 	char **coord;
 }				t_map;
 
 /// cast int t_color
 typedef	struct	s_cube
 {	
+	double dirx;
+	double diry;
+	double planey;
+	double planex;
 	int fd;
 	int fd_map;
 	int fd_map2;
@@ -86,11 +100,13 @@ typedef	struct	s_cube
 
 }				t_cube;
 
+void	display(t_cube *cube);
+void	verLine(t_mlx *mlx, int x, int y1, int y2, int color);
+void	drawMap(t_cube *cube);
 void	drawSqr(t_mlx *mlx, int x, int y, int size, int color);
 void	drawRect(t_mlx *x, int x1, int y1, int x2, int y2, int color);
 void	drawLine(t_mlx *x, int x1, int y1, int x2, int y2, int color);
 void	pixel_put(t_mlx *mlx, int x, int y, int color);
-int		init_cube(t_cube *cube);
 void	clear(t_mlx *mlx, int color);
 int		first_read(t_cube *cube);
 int		param_r(t_cube *cube, char *line);
@@ -98,6 +114,11 @@ int		parse_map(t_cube *cube);
 int		get_color(t_cube *cube, char *line);
 int		def_path(t_cube *cube, char *line);
 int		param_path(char *line, char **path);
+int		init_cube(t_cube *cube);
 int		check_map(t_cube *cube);
+t_cube  *init_cube_s();
+t_mlx	*init_mlx();
+t_map	*init_map();
+t_player *init_player();
 void	map_error(t_map *map, int x, int y);
 #endif

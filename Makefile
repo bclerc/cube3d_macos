@@ -16,13 +16,15 @@ SOURCES = \
 		sources/parse/parse_utils.c \
 		sources/utils/error.c \
 		sources/vector.c \
+		sources/init.c \
+		sources/raycast.c \
 		cube3d.c
 
 
 OBJECTS = $(SOURCES:.c=.o)
 
 FSANITIZE = -fsanitize=address
-FLAGS =
+FLAGS = 
 CC = clang
 
 NO_COLOR =		\033[38;5;15m
