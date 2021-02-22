@@ -24,7 +24,7 @@ SOURCES = \
 OBJECTS = $(SOURCES:.c=.o)
 
 FSANITIZE = -fsanitize=address
-FLAGS = 
+FLAGS = -fsanitize=address -g3
 CC = clang
 
 NO_COLOR =		\033[38;5;15m

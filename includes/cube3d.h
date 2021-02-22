@@ -6,7 +6,7 @@
 /*   By: bclerc <bclerc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/08 11:35:47 by bclerc            #+#    #+#             */
-/*   Updated: 2021/02/18 16:03:06 by bclerc           ###   ########.fr       */
+/*   Updated: 2021/02/22 17:03:32 by bclerc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,15 @@
 # include "gnl/get_next_line.h"
 # include "minilibx/mlx.h"
 # include <stdio.h>
+# include <math.h>
 # define heigth 1080
 # define width	1920
 # define k_up  126
 # define k_down 125
 # define k_left 123
 # define k_right 124
- 
+# define rotspeed 0.05 
+# define movespeed 0.2
 typedef struct	s_vector
 {
 	int x;
@@ -43,6 +45,7 @@ typedef struct	s_mlx
 	int down;
 	int left;
 	int right;
+	int	l;
 
 }				t_mlx;	
 
@@ -100,6 +103,9 @@ typedef	struct	s_cube
 
 }				t_cube;
 
+void	move_up(t_cube *cube);
+void	turn_right(t_cube *cube);
+void	turn_left(t_cube *cube);
 void	display(t_cube *cube);
 void	verLine(t_mlx *mlx, int x, int y1, int y2, int color);
 void	drawMap(t_cube *cube);

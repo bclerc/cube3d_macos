@@ -6,7 +6,7 @@
 /*   By: bclerc <bclerc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/08 11:38:52 by bclerc            #+#    #+#             */
-/*   Updated: 2021/02/18 16:41:01 by bclerc           ###   ########.fr       */
+/*   Updated: 2021/02/22 16:58:04 by bclerc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ int key_press(int key, t_cube *cube)
 		clear(cube->mlx, 0x0F0F0F);
 		drawMap(cube);
 	}
+	if (key == 37)
+		cube->mlx->l = cube->mlx->l == 1 ? 0 : 1;
 	if (key == k_down)
 		cube->mlx->down = 1;
 	if (key == k_up)
@@ -74,40 +76,21 @@ void kill_c(t_cube *cube)
 
 int	deal_key(t_cube *cube)
 {	
-	printf("Player x, y : %f %f, max x, y : %d %d \n",cube->player->x, cube->player->y, *cube->map->max_y, *cube->map->max_x);
+	//printf("Player x, y : %f %f, max x, y : %d %d \n",cube->player->x, cube->player->y, *cube->map->max_y, *cube->map->max_x);
 	if (cube->mlx->up == 1)
-	{
-	 printf("up pressed\n");
-	  cube->player->x += cube->dirx * 0.1;
-      cube->player->y += cube->diry * 0.1;
-	}
+		move_up(cube);
 	if (cube->mlx->down == 1)
 	{
-	 cube->player->x -= cube->dirx * 0.1;
-     cube->player->y -= cube->diry * 0.1;
+	 cube->player->x -= cube->dirx * 1;
+     cube->player->y -= cube->diry * 1;
 	}
 	if (cube->mlx->left == 1)
-{
-	  double oldDirX = cube->dirx;
-      cube->dirx = cube->dirx * cos(0.01) - cube->diry * sin(0.01);
-      cube->diry = oldDirX * sin(0.01) + cube->diry * cos(0.01);
-      double oldPlaneX = cube->planex;
-      cube->planex = cube->planex * cos(0.01) - cube->planey * sin(0.01);
-      cube->planey = oldPlaneX * sin(0.01) + cube->planey * cos(0.01);
-}
+		turn_left(cube);
 	if (cube->mlx->right == 1)
-	{
-		printf("\n right pressed \n");
-
-      double oldDirX = cube->dirx;
-      cube->dirx = cube->dirx * cos(-0.01) - cube->diry * sin(-0.01);
-      cube->diry = oldDirX * sin(-0.01) + cube->diry * cos(-0.01);
-      double oldPlaneX = cube->planex;
-      cube->planex = cube->planex * cos(-0.01) - cube->planey * sin(-0.01);
-      cube->planey = oldPlaneX * sin(-0.01) + cube->planey * cos(-0.01);
-	}
+		turn_right(cube);
 	display(cube);
 	mlx_put_image_to_window(cube->mlx->mlx, cube->mlx->win, cube->mlx->img_ptr, 0, 0);
+	
 	return (1);
 }
 

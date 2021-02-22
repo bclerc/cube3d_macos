@@ -6,7 +6,7 @@
 /*   By: bclerc <bclerc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/18 14:19:44 by bclerc            #+#    #+#             */
-/*   Updated: 2021/02/18 16:45:01 by bclerc           ###   ########.fr       */
+/*   Updated: 2021/02/22 16:40:04 by bclerc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,8 @@ t_player *init_player()
 
 	if (!(player = (t_player*)malloc(sizeof(t_player))))
 		return (0);
-	player->x = 10;
-	player->y = 10;
+	player->x = 5;
+	player->y = 5;
 	return (player);	
 }
 
@@ -62,8 +62,8 @@ t_cube *init_cube_s()
 
 	if (!(cube = (t_cube*)malloc(sizeof(t_cube))))
 		return (0);
-	cube->diry = 0;
-	cube->dirx = -1.6;
+	cube->diry = 0.0;
+	cube->dirx = -1.0;
 	cube->planex = 0;
 	cube->planey = 0.66;
 	cube->player = init_player();
