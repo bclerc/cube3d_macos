@@ -6,7 +6,7 @@
 /*   By: bclerc <bclerc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/22 10:45:49 by bclerc            #+#    #+#             */
-/*   Updated: 2021/02/22 17:02:46 by bclerc           ###   ########.fr       */
+/*   Updated: 2021/02/22 22:47:17 by bclerc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,17 @@
 
 void	move_up(t_cube *cube)
 {
-	if (cube->map->coord[(int)cube->player->y][(int)(cube->player->x + cube->dirx * movespeed  + 0.1)] - '0' == 0)
+	if (cube->map->coord[(int)cube->player->y][(int)(cube->player->x + cube->dirx * movespeed)] - '0' == 0)
 		cube->player->x += cube->dirx * movespeed;
-	if (cube->map->coord[(int)(cube->player->y + cube->diry * movespeed + 0.1)][(int)cube->player->x] - '0' == 0)
+	if (cube->map->coord[(int)(cube->player->y + cube->diry * movespeed)][(int)cube->player->x] - '0' == 0)
 		cube->player->y += cube->diry * movespeed;
 }
 
 void 	move_back(t_cube *cube)
 {
-	if (cube->map->coord[(int)cube->player->y][(int)(cube->player->x - cube->dirx * movespeed - 0.1)] - '0' == 0)
+	if (cube->map->coord[(int)cube->player->y][(int)(cube->player->x - cube->dirx * movespeed)] - '0' == 0)
 		cube->player->x -= cube->dirx * movespeed;
-	if (cube->map->coord[(int)(cube->player->y - cube->diry * movespeed - 0.1)][(int)cube->player->x] - '0' == 0)
+	if (cube->map->coord[(int)(cube->player->y - cube->diry * movespeed)][(int)cube->player->x] - '0' == 0)
 		cube->player->y -= cube->diry * movespeed;		
 }
 void	turn_left(t_cube *cube)
@@ -135,10 +135,10 @@ void	display(t_cube *cube)
 		if (drawend >= heigth)
 			drawend = heigth -1;
 	
-		verLine(mlx, x, 0, drawstart, 0);
-		verLine(mlx, x, drawstart, drawend, side ? 0xFFFFFF : 0xAAAAAA);
+		verLine(mlx, x, 0, drawstart, 0xFFFF00);
+		verLine(mlx, x, drawstart, drawend, side ? 0xFF00FF : 0xAAAAAA);
 		verLine(mlx, x, drawend, heigth, 0);
 
-		x+=2;		
+		x++;		
 	}
 }	

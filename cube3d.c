@@ -6,7 +6,7 @@
 /*   By: bclerc <bclerc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/08 11:38:52 by bclerc            #+#    #+#             */
-/*   Updated: 2021/02/22 16:58:04 by bclerc           ###   ########.fr       */
+/*   Updated: 2021/02/22 20:21:15 by bclerc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,6 @@ int key_press(int key, t_cube *cube)
 		clear(cube->mlx, 0x0F0F0F);
 		drawMap(cube);
 	}
-	if (key == 37)
-		cube->mlx->l = cube->mlx->l == 1 ? 0 : 1;
 	if (key == k_down)
 		cube->mlx->down = 1;
 	if (key == k_up)

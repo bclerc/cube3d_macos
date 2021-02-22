@@ -6,7 +6,7 @@
 /*   By: bclerc <bclerc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/08 11:35:47 by bclerc            #+#    #+#             */
-/*   Updated: 2021/02/22 17:03:32 by bclerc           ###   ########.fr       */
+/*   Updated: 2021/02/22 20:12:38 by bclerc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@
 # include "minilibx/mlx.h"
 # include <stdio.h>
 # include <math.h>
-# define heigth 1080
-# define width	1920
+# define heigth 1000
+# define width	1900
 # define k_up  126
 # define k_down 125
 # define k_left 123
