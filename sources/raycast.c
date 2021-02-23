@@ -6,7 +6,7 @@
 /*   By: bclerc <bclerc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/22 10:45:49 by bclerc            #+#    #+#             */
-/*   Updated: 2021/02/23 16:43:53 by bclerc           ###   ########.fr       */
+/*   Updated: 2021/02/23 17:11:22 by bclerc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -145,11 +145,11 @@ void	display(t_cube *cube)
 		if (drawend >= heigth)
 			drawend = heigth -1;
 
-		double wallx;
-		if (side == 0) wallx = cube->player->y + perpwalldist * raydiry;
-		else wallx = cube->player->x + perpwalldist * raydirx;
+		double wallx;	
+		if (side == 0) wallx = mapy + perpwalldist * raydiry;
+		else wallx = mapx + perpwalldist * raydirx;
 		wallx -=floor((wallx));
-	int texX = (int)wallx * (double)64;
+	int texX = (int)(wallx * (double)64);
 		if (side == 0 && raydirx > 0 ) texX = 64 - texX - 1;
 		if (side == 1 && raydiry < 0 ) texX = 64 - texX -1; 
 		double step = 1.0 * 64 / lineheight;
@@ -158,7 +158,7 @@ void	display(t_cube *cube)
 		{
 			int texY = (int)texPos & (64 - 1);
 			texPos +=step;
-			int color = *(int*)&imgdata[texX +texX * y];
+			int color = *(int*)&imgdata[(texY * (size_line) + texX * (bpp/8))];
 			pixel_put(cube->mlx, x, y, color);
 		}
 

@@ -232,6 +232,14 @@ int main(int /*argc*/, char */*argv*/[])
       }
     }
 
+	img_data[ray->text_y * texture->size_line
+		+ ray->text_x * (texture->bpp / 8) + 1]
+
+				recup->data.addr[y * recup->data.line_length / 4 + x] =
+				recup->texture[recup->t.texdir].addr[recup->t.texy *
+					recup->texture[recup->t.texdir].line_length /
+					4 + recup->t.texx];
+
 	////
 	recup->t.texy *
 					recup->texture[recup->t.texdir].line_length /
