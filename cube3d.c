@@ -6,7 +6,7 @@
 /*   By: bclerc <bclerc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/08 11:38:52 by bclerc            #+#    #+#             */
-/*   Updated: 2021/02/22 20:21:15 by bclerc           ###   ########.fr       */
+/*   Updated: 2021/02/23 14:13:42 by bclerc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,6 @@ int	deal_key(t_cube *cube)
 		turn_right(cube);
 	display(cube);
 	mlx_put_image_to_window(cube->mlx->mlx, cube->mlx->win, cube->mlx->img_ptr, 0, 0);
-	
 	return (1);
 }
 
@@ -96,7 +95,11 @@ int main(int argc, char **argv)
 {
 	int fd;
 	t_cube *cube;
+	t_texture *texture;
 
+	
+
+	texture = (t_texture*)malloc(sizeof(t_texture));
 	cube = init_cube_s();
 	printf("%f %f >>>", cube->player->y, cube->player->x);
 	cube->file_name = argv[1];
@@ -118,8 +121,18 @@ int main(int argc, char **argv)
 	check_map(cube);
 	printf("X: %d, Y: %d\nNO: %s\nSO %s\nWE %s\nEA %s\nS %s", cube->R_X, cube->R_Y, cube->NO, cube->SO, cube->WE, cube->EA, cube->SPRITE);
 	printf("\nF %d, %d, %d\nC %d, %d, %d\n", cube->G_COLOR.r, cube->G_COLOR.g, cube->G_COLOR.b, cube->R_COLOR.r, cube->R_COLOR.g, cube->R_COLOR.b);
-	printf("\n Posx: %f, posy: %f, Max x: %d, Max y: %d\n",cube->player->x, cube->player->y, *cube->map->max_x, *cube->map->max_y);
+	printf("\n Posx: %f, posy: %f, Max x: %d, Max y: %d\n",cube->player->x, cube->player->y, *cube->map->max_x, *cube->map->max_y);	
 	cube->mlx = init_mlx();
+	void *imgptr;
+	void *imgdata;
+	int bpp;
+	int size_line;
+	int endian;
+	int h,w;
+	imgptr = mlx_xpm_file_to_image(cube->mlx->mlx, "greystone.xpm", &w, &h);
+	imgdata = (int *)mlx_get_data_addr(imgptr, &bpp, &size_line, &endian);
+
+	mlx_put_image_to_window(cube->mlx->mlx, cube->mlx->win, imgdata, 200, 200);
 	display(cube);
 	mlx_put_image_to_window(cube->mlx->mlx, cube->mlx->win, cube->mlx->img_ptr, 0, 0);
 	mlx_hook(cube->mlx->win, 2, 1L<<0, key_press, cube);

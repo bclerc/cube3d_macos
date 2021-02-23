@@ -6,7 +6,7 @@
 /*   By: bclerc <bclerc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/08 11:35:47 by bclerc            #+#    #+#             */
-/*   Updated: 2021/02/22 20:12:38 by bclerc           ###   ########.fr       */
+/*   Updated: 2021/02/23 12:56:54 by bclerc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,20 @@ typedef struct	s_mlx
 	int	l;
 
 }				t_mlx;	
+
+typedef struct s_texture
+{
+	void *mlx;
+	void *win;
+	void *img;
+	void *img_data;
+	int size_line;
+	int bpp;
+	int endian;
+	int h;
+	int w;
+
+}				t_texture;
 
 typedef struct s_color
 {
