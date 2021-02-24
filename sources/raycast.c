@@ -6,7 +6,7 @@
 /*   By: bclerc <bclerc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/22 10:45:49 by bclerc            #+#    #+#             */
-/*   Updated: 2021/02/23 17:11:22 by bclerc           ###   ########.fr       */
+/*   Updated: 2021/02/24 15:29:04 by bclerc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,10 @@ void	move_up(t_cube *cube)
 
 void 	move_back(t_cube *cube)
 {
-	if (cube->map->coord[(int)cube->player->y][(int)(cube->player->x - cube->dirx * movespeed)] - '0' == 0)
-		cube->player->x -= cube->dirx * movespeed;
-	if (cube->map->coord[(int)(cube->player->y - cube->diry * movespeed)][(int)cube->player->x] - '0' == 0)
-		cube->player->y -= cube->diry * movespeed;		
+	if (cube->map->coord[(int)cube->player->y][(int)(cube->player->x + cube->dirx * -movespeed)] - '0' == 0)
+		cube->player->x += cube->dirx * -movespeed;
+	if (cube->map->coord[(int)(cube->player->y + cube->diry * -movespeed)][(int)cube->player->x] - '0' == 0)
+		cube->player->y += cube->diry * -movespeed;		
 }
 void	turn_left(t_cube *cube)
 {
@@ -49,6 +49,7 @@ void	turn_right(t_cube *cube)
 void	display(t_cube *cube)
 {
 	t_mlx *mlx;
+	t_texture *texture;
 	double camerax = 0; 
 	double raydirx = 0 ;
 	double raydiry = 0 ;
@@ -68,17 +69,6 @@ void	display(t_cube *cube)
 	int			mapx;
 	int 		mapy;
 	int x;
-
-	void *imgptr;
-	void *imgdata;
-	int bpp;
-	int size_line;
-	int endian;
-	int h,w;
-	imgptr = mlx_xpm_file_to_image(cube->mlx->mlx, "greystone.xpm", &w, &h);
-	imgdata = (int *)mlx_get_data_addr(imgptr, &bpp, &size_line, &endian);
-	mlx_put_image_to_window(cube->mlx->mlx, cube->mlx->win, imgptr, 0, 0);
-	
 
 	mlx = cube->mlx;
 	x = 0;
@@ -128,6 +118,7 @@ void	display(t_cube *cube)
 			{
 				sidedisty += deltadisty;
 				mapy += stepy;
+
 				side = 1;
 			}
 		if (cube->map->coord[mapy][mapx] - '0' > 0)
@@ -145,26 +136,32 @@ void	display(t_cube *cube)
 		if (drawend >= heigth)
 			drawend = heigth -1;
 
-		double wallx;	
-		if (side == 0) wallx = mapy + perpwalldist * raydiry;
-		else wallx = mapx + perpwalldist * raydirx;
+		double wallx;
+		if (side == 0) wallx = cube->player->y + perpwalldist * raydiry;
+		else wallx = cube->player->x + perpwalldist * raydirx;
 		wallx -=floor((wallx));
 	int texX = (int)(wallx * (double)64);
-		if (side == 0 && raydirx > 0 ) texX = 64 - texX - 1;
-		if (side == 1 && raydiry < 0 ) texX = 64 - texX -1; 
+		if (side == 0 && raydirx > 0 ) {texX = 64 - texX - 1;}
+		if (side == 1 && raydiry < 0 ) {texX = 64 - texX -1;} 
+		if (side == 0 && raydirx > 0) texture = cube->texture[0];
+		if (side == 0 && raydirx <= 0) texture = cube->texture[1];
+		if (side == 1 && raydiry < 0 ) texture = cube->texture[2];
+		if (side == 1 && raydiry >= 0) texture = cube->texture[3];
+
+
+
 		double step = 1.0 * 64 / lineheight;
-		double texPos = (drawstart - h / 2 + lineheight / 2) * step;
+		double texPos = (drawstart - heigth / 2 + lineheight / 2) * step;
 		for( int y = drawstart; y <drawend; y++)
 		{
 			int texY = (int)texPos & (64 - 1);
 			texPos +=step;
-			int color = *(int*)&imgdata[(texY * (size_line) + texX * (bpp/8))];
+			int color = *(int*)&texture->imgdat[(texY * (texture->size_line) + texX * (texture->bpp/8))];
 			pixel_put(cube->mlx, x, y, color);
 		}
-
 		verLine(mlx, x, 0, drawstart, 0xFFFF00);
 		verLine(mlx, x, drawend, heigth, 0);
 
-		x++;		
+		x+=2;		
 	}
 }	

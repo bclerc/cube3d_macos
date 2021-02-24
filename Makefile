@@ -8,16 +8,17 @@ OBJECTS_FOLDER = ./
 LIBS = libft
 
 SOURCES = \
-		includes/gnl/get_next_line.c \
-		sources/parse/parser.c \
-		sources/parse/param.c \
-		sources/parse/color.c \
-		sources/parse/parse_map.c \
-		sources/parse/parse_utils.c \
-		sources/utils/error.c \
-		sources/vector.c \
-		sources/init.c \
-		sources/raycast.c \
+		./includes/gnl/get_next_line.c \
+		./sources/parse/parser.c \
+		./sources/parse/param.c \
+		./sources/parse/color.c \
+		./sources/parse/parse_map.c \
+		./sources/parse/parse_utils.c \
+		./sources/utils/error.c \
+		./sources/texture/texture_init.c \
+		./sources/vector.c \
+		./sources/init.c \
+		./sources/raycast.c \
 		cube3d.c
 
 

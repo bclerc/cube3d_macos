@@ -6,7 +6,7 @@
 /*   By: bclerc <bclerc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/18 14:19:44 by bclerc            #+#    #+#             */
-/*   Updated: 2021/02/23 14:02:23 by bclerc           ###   ########.fr       */
+/*   Updated: 2021/02/24 14:00:30 by bclerc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,5 +68,6 @@ t_cube *init_cube_s()
 	cube->planey = 0.66;
 	cube->player = init_player();
 	cube->map = init_map();
+	cube->texture = init_texture();
 	return (cube);
 }

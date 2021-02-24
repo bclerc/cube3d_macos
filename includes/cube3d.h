@@ -6,7 +6,7 @@
 /*   By: bclerc <bclerc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/08 11:35:47 by bclerc            #+#    #+#             */
-/*   Updated: 2021/02/23 12:56:54 by bclerc           ###   ########.fr       */
+/*   Updated: 2021/02/24 12:45:05 by bclerc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,10 +51,8 @@ typedef struct	s_mlx
 
 typedef struct s_texture
 {
-	void *mlx;
-	void *win;
-	void *img;
-	void *img_data;
+	void *imgptr;
+	void *imgdat;
 	int size_line;
 	int bpp;
 	int endian;
@@ -86,8 +84,8 @@ typedef struct	s_player
 typedef	struct	s_map
 {
 	int parsed;
-	int *max_x;
-	int *max_y;
+	int max_x;
+	int max_y;
 	char **coord;
 }				t_map;
 
@@ -103,6 +101,7 @@ typedef	struct	s_cube
 	int fd_map2;
 	int R_X;
 	int	R_Y;
+	t_texture **texture;
 	t_mlx *mlx;
 	t_color G_COLOR;
 	t_color R_COLOR;
@@ -116,6 +115,7 @@ typedef	struct	s_cube
 	char *file_name;
 
 }				t_cube;
+
 
 void	move_up(t_cube *cube);
 void	turn_right(t_cube *cube);
@@ -140,5 +140,7 @@ t_cube  *init_cube_s();
 t_mlx	*init_mlx();
 t_map	*init_map();
 t_player *init_player();
+t_texture **init_texture();
+void	load_texture(t_cube *cube);
 void	map_error(t_map *map, int x, int y);
 #endif

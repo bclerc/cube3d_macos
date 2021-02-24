@@ -1,9 +1,9 @@
-SO./path_to_the_south_texture
 R 1910 1081
 
-NO ./path_to_the_north_texture
-WE ./path_to_the_west_texture
-EA ./path_to_the_east_texture
+SO sources/texture/eagle.xpm
+NO sources/texture/greystone.xpm
+WE sources/texture/redbrick.xpm
+EA sources/texture/wood.xpm
 
 S ./path_to_the_sprite_texture
 

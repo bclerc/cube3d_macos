@@ -6,7 +6,7 @@
 /*   By: bclerc <bclerc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/09 11:04:18 by bclerc            #+#    #+#             */
-/*   Updated: 2021/02/18 15:54:59 by bclerc           ###   ########.fr       */
+/*   Updated: 2021/02/24 12:45:18 by bclerc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,10 +56,8 @@ int first_read(t_cube *cube)
 	}
 	free(line);
 	close(cube->fd_map);
-	cube->map->max_y =  (int*)malloc(sizeof(int));
-	cube->map->max_x =  (int*)malloc(sizeof(int));
-	*cube->map->max_y =  y;
-	*cube->map->max_x =  x;
+	cube->map->max_y =  y;
+	cube->map->max_x =  x;
 	
 	return (1);
 }
@@ -71,13 +69,13 @@ int parse_map(t_cube *cube)
 	int y;
 	
 	y = 0;
-	cube->map->coord = (char **)malloc((*cube->map->max_y + 1) * sizeof(char*));
+	cube->map->coord = (char **)malloc((cube->map->max_y + 1) * sizeof(char*));
 	while (get_next_line(cube->fd_map2, &line) == 1)
 	{
 		if (!(is_map(line)))
 			continue;
-		cube->map->coord[y] = (char*)malloc((*cube->map->max_x + 1) * sizeof(char));
-		ft_bzero(cube->map->coord[y], *cube->map->max_x + 1);
+		cube->map->coord[y] = (char*)malloc((cube->map->max_x + 1) * sizeof(char));
+		ft_bzero(cube->map->coord[y], cube->map->max_x + 1);
 		ft_memcpy(cube->map->coord[y],line, ft_strlen(line));
 		y++;
 		free(line);
