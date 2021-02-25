@@ -6,7 +6,7 @@
 /*   By: bclerc <bclerc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/08 11:35:47 by bclerc            #+#    #+#             */
-/*   Updated: 2021/02/24 12:45:05 by bclerc           ###   ########.fr       */
+/*   Updated: 2021/02/25 12:29:38 by bclerc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,35 @@
 # define k_right 124
 # define rotspeed 0.05 
 # define movespeed 0.2
+
+typedef struct	s_raycast
+{
+	double camerax;
+	double raydirx;
+	double raydiry;
+	double sidedistx;
+	double sidedisty;
+	double deltadistx;
+	double deltadisty;
+	double pwalldist;
+	double wallx;
+	int texx;
+	int lineheight;
+	double texPos;
+	int texy;
+	int color;
+	int drawstart;
+	int drawend;
+	int linehieght;
+	int side;
+	int stepx;
+	int stepy;
+	int hit;
+	int mapx;
+	int mapy;
+	
+
+}				t_raycast;
 typedef struct	s_vector
 {
 	int x;
@@ -121,6 +150,7 @@ void	move_up(t_cube *cube);
 void	turn_right(t_cube *cube);
 void	turn_left(t_cube *cube);
 void	display(t_cube *cube);
+int		is_player(t_cube *cube, char c, int x, int y);
 void	verLine(t_mlx *mlx, int x, int y1, int y2, int color);
 void	drawMap(t_cube *cube);
 void	drawSqr(t_mlx *mlx, int x, int y, int size, int color);

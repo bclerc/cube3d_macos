@@ -6,7 +6,7 @@
 /*   By: bclerc <bclerc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/22 10:45:49 by bclerc            #+#    #+#             */
-/*   Updated: 2021/02/24 15:29:04 by bclerc           ###   ########.fr       */
+/*   Updated: 2021/02/25 12:31:07 by bclerc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,119 +48,99 @@ void	turn_right(t_cube *cube)
 }
 void	display(t_cube *cube)
 {
-	t_mlx *mlx;
-	t_texture *texture;
-	double camerax = 0; 
-	double raydirx = 0 ;
-	double raydiry = 0 ;
-	double sidedistx = 0 ;
-	double sidedisty = 0 ;
-	double deltadistx = 0 ;
-	double deltadisty = 0 ;
-	double perpwalldist = 0 ;
-	int drawstart = 0 ;
-	int drawend = 0 ; 
-	int lineheight = 0 ;
-	double side;
-	int color;
-	int stepx;
-	int stepy;
-	int hit;
-	int			mapx;
-	int 		mapy;
-	int x;
+	t_mlx		*mlx;
+	t_texture	*texture;
+	t_raycast	ray;
+	int			x;
 
 	mlx = cube->mlx;
 	x = 0;
 	while (x < width)
 	{
-		camerax = 2 * x / (double)width - 1;
-		raydirx = cube->dirx + cube->planex * camerax;
-		raydiry = cube->diry + cube->planey * camerax;
+		ray.camerax = 2 * x / (double)width - 1;
+		ray.raydirx = cube->dirx + cube->planex * ray.camerax;
+		ray.raydiry = cube->diry + cube->planey * ray.camerax;
 
-		mapx = (int)cube->player->x;
-		mapy = (int)cube->player->y;
+		ray.mapx = (int)cube->player->x;
+		ray.mapy = (int)cube->player->y;
 
-		deltadistx = fabs(1 / raydirx);
-		deltadisty = fabs(1 / raydiry);
+		ray.deltadistx = fabs(1 / ray.raydirx);
+		ray.deltadisty = fabs(1 / ray.raydiry);
 
-		hit = 0;
-		if (raydirx < 0)
+		ray.hit = 0;
+		if (ray.raydirx < 0)
 		{
-			stepx = -1;
-			sidedistx = (cube->player->x - mapx) * deltadistx;
+			ray.stepx = -1;
+			ray.sidedistx = (cube->player->x - ray.mapx) * ray.deltadistx;
 		}
 		else
 		{
-			stepx = 1;
-			sidedistx = (mapx + 1.0 - cube->player->x) * deltadistx;
+			ray.stepx = 1;
+			ray.sidedistx = (ray.mapx + 1.0 - cube->player->x) * ray.deltadistx;
 		}
-		if (raydiry < 0)
+		if (ray.raydiry < 0)
 			{
-				stepy = -1;
-				sidedisty = (cube->player->y - mapy) * deltadisty;
+				ray.stepy = -1;
+				ray.sidedisty = (cube->player->y - ray.mapy) * ray.deltadisty;
 			}
 			else
 			{
-			stepy = 1;
-			sidedisty = (mapy + 1.0 - cube->player->y) * deltadisty;
+			ray.stepy = 1;
+			ray.sidedisty = (ray.mapy + 1.0 - cube->player->y) * ray.deltadisty;
 		}
 		
-		while (hit == 0)
+		while (ray.hit == 0)
 		{
-			if (sidedistx < sidedisty)
+			if (ray.sidedistx < ray.sidedisty)
 			{
-				sidedistx += deltadistx;
-				mapx += stepx;
-				side = 0;
+				ray.sidedistx += ray.deltadistx;
+				ray.mapx += ray.stepx;
+				ray.side = 0;
 			}
 			else
 			{
-				sidedisty += deltadisty;
-				mapy += stepy;
+				ray.sidedisty += ray.deltadisty;
+				ray.mapy += ray.stepy;
 
-				side = 1;
+				ray.side = 1;
 			}
-		if (cube->map->coord[mapy][mapx] - '0' > 0)
-			hit = 1;	
+		if (cube->map->coord[ray.mapy][ray.mapx] - '0' > 0)
+			ray.hit = 1;	
 		}
-		if (side == 0)
-			perpwalldist = (mapx - cube->player->x + (1 - stepx) / 2) / raydirx;	
+		if (ray.side == 0)
+			ray.pwalldist = (ray.mapx - cube->player->x + (1 - ray.stepx) / 2) / ray.raydirx;	
 		else
-			perpwalldist = (mapy - cube->player->y + (1 - stepy) / 2) / raydiry;
-		lineheight = (int)(heigth / perpwalldist);
-		 drawstart = -lineheight / 2  + heigth / 2;
-		if (drawstart < 0)
-			drawstart = 0;
-		drawend = lineheight / 2 + heigth / 2;
-		if (drawend >= heigth)
-			drawend = heigth -1;
+			ray.pwalldist = (ray.mapy - cube->player->y + (1 - ray.stepy) / 2) / ray.raydiry;
+		ray.lineheight = (int)(heigth / ray.pwalldist);
+		 ray.drawstart = -ray.lineheight / 2  + heigth / 2;
+		if (ray.drawstart < 0)
+			ray.drawstart = 0;
+		ray.drawend = ray.lineheight / 2 + heigth / 2;
+		if (ray.drawend >= heigth)
+			ray.drawend = heigth -1;
 
-		double wallx;
-		if (side == 0) wallx = cube->player->y + perpwalldist * raydiry;
-		else wallx = cube->player->x + perpwalldist * raydirx;
-		wallx -=floor((wallx));
-	int texX = (int)(wallx * (double)64);
-		if (side == 0 && raydirx > 0 ) {texX = 64 - texX - 1;}
-		if (side == 1 && raydiry < 0 ) {texX = 64 - texX -1;} 
-		if (side == 0 && raydirx > 0) texture = cube->texture[0];
-		if (side == 0 && raydirx <= 0) texture = cube->texture[1];
-		if (side == 1 && raydiry < 0 ) texture = cube->texture[2];
-		if (side == 1 && raydiry >= 0) texture = cube->texture[3];
+		if (ray.side == 0) ray.wallx = cube->player->y + ray.pwalldist * ray.raydiry;
+		else ray.wallx = cube->player->x + ray.pwalldist * ray.raydirx;
+		ray.wallx -=floor((ray.wallx));
+		ray.texx = (int)(ray.wallx * (double)64);
+		if (ray.side == 0 && ray.raydirx > 0 ) {ray.texx = 64 - ray.texx - 1;}
+		if (ray.side == 1 && ray.raydiry < 0 ) {ray.texx = 64 - ray.texx -1;} 
+		if (ray.side == 0 && ray.raydirx > 0) texture = cube->texture[0];
+		if (ray.side == 0 && ray.raydirx <= 0) texture = cube->texture[1];
+		if (ray.side == 1 && ray.raydiry < 0 ) texture = cube->texture[2];
+		if (ray.side == 1 && ray.raydiry >= 0) texture = cube->texture[3];
 
-
-
-		double step = 1.0 * 64 / lineheight;
-		double texPos = (drawstart - heigth / 2 + lineheight / 2) * step;
-		for( int y = drawstart; y <drawend; y++)
+		double step = 1.0 * 64 / ray.lineheight;
+		double texPos = (ray.drawstart - heigth / 2 + ray.lineheight / 2) * step;
+		for( int y = ray.drawstart; y <ray.drawend; y++)
 		{
-			int texY = (int)texPos & (64 - 1);
+			ray.texy = (int)texPos & (64 - 1);
 			texPos +=step;
-			int color = *(int*)&texture->imgdat[(texY * (texture->size_line) + texX * (texture->bpp/8))];
-			pixel_put(cube->mlx, x, y, color);
+			ray.color = *(int*)&texture->imgdat[(ray.texy * (texture->size_line) + ray.texx * (texture->bpp/8))];
+			pixel_put(cube->mlx, x, y, ray.color);
 		}
-		verLine(mlx, x, 0, drawstart, 0xFFFF00);
-		verLine(mlx, x, drawend, heigth, 0);
+		verLine(mlx, x, 0, ray.drawstart, 0xFFFF00);
+		verLine(mlx, x, ray.drawend, heigth, 0);
 
 		x+=2;		
 	}
