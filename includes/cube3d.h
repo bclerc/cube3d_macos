@@ -6,7 +6,7 @@
 /*   By: bclerc <bclerc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/08 11:35:47 by bclerc            #+#    #+#             */
-/*   Updated: 2021/02/25 12:29:38 by bclerc           ###   ########.fr       */
+/*   Updated: 2021/02/25 14:29:05 by bclerc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,14 +18,26 @@
 # include "minilibx/mlx.h"
 # include <stdio.h>
 # include <math.h>
-# define heigth 1000
-# define width	1900
+# define heigth 720
+# define width	950
 # define k_up  126
 # define k_down 125
 # define k_left 123
 # define k_right 124
 # define rotspeed 0.05 
 # define movespeed 0.2
+
+typedef struct s_texture
+{
+	void *imgptr;
+	void *imgdat;
+	int size_line;
+	int bpp;
+	int endian;
+	int h;
+	int w;
+
+}				t_texture;
 
 typedef struct	s_raycast
 {
@@ -38,6 +50,7 @@ typedef struct	s_raycast
 	double deltadisty;
 	double pwalldist;
 	double wallx;
+	double step;
 	int texx;
 	int lineheight;
 	double texPos;
@@ -52,6 +65,7 @@ typedef struct	s_raycast
 	int hit;
 	int mapx;
 	int mapy;
+	t_texture *texture;
 	
 
 }				t_raycast;
@@ -78,17 +92,6 @@ typedef struct	s_mlx
 
 }				t_mlx;	
 
-typedef struct s_texture
-{
-	void *imgptr;
-	void *imgdat;
-	int size_line;
-	int bpp;
-	int endian;
-	int h;
-	int w;
-
-}				t_texture;
 
 typedef struct s_color
 {
