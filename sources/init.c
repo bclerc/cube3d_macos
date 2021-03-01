@@ -6,7 +6,7 @@
 /*   By: bclerc <bclerc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/18 14:19:44 by bclerc            #+#    #+#             */
-/*   Updated: 2021/02/24 14:00:30 by bclerc           ###   ########.fr       */
+/*   Updated: 2021/03/01 12:11:28 by bclerc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,10 +62,10 @@ t_cube *init_cube_s()
 
 	if (!(cube = (t_cube*)malloc(sizeof(t_cube))))
 		return (0);
-	cube->diry = 0.0;
-	cube->dirx = -1.0;
+	cube->diry = 0;
+	cube->dirx = 0;
 	cube->planex = 0;
-	cube->planey = 0.66;
+	cube->planey = 0;
 	cube->player = init_player();
 	cube->map = init_map();
 	cube->texture = init_texture();

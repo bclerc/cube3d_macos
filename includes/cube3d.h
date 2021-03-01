@@ -6,7 +6,7 @@
 /*   By: bclerc <bclerc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/08 11:35:47 by bclerc            #+#    #+#             */
-/*   Updated: 2021/02/25 14:29:05 by bclerc           ###   ########.fr       */
+/*   Updated: 2021/03/01 13:39:11 by bclerc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,13 @@
 # include <stdio.h>
 # include <math.h>
 # define heigth 720
-# define width	950
+# define width	1100
 # define k_up  126
 # define k_down 125
 # define k_left 123
 # define k_right 124
-# define rotspeed 0.05 
-# define movespeed 0.2
+# define rotspeed 0.06 
+# define movespeed 0.15
 
 typedef struct s_texture
 {
@@ -149,9 +149,13 @@ typedef	struct	s_cube
 }				t_cube;
 
 
+void tex_error(char *path, char *texture);
 void	move_up(t_cube *cube);
+void	move_back	(t_cube *cube);
 void	turn_right(t_cube *cube);
 void	turn_left(t_cube *cube);
+void	error_m(char *msg);
+void	map_error_m(t_map *map, int x, int y, char *msg);
 void	display(t_cube *cube);
 int		is_player(t_cube *cube, char c, int x, int y);
 void	verLine(t_mlx *mlx, int x, int y1, int y2, int color);

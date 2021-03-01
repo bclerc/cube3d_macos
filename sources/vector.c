@@ -6,7 +6,7 @@
 /*   By: bclerc <bclerc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/15 12:47:39 by bclerc            #+#    #+#             */
-/*   Updated: 2021/02/24 12:10:43 by bclerc           ###   ########.fr       */
+/*   Updated: 2021/03/01 10:57:34 by bclerc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,9 @@
 void	pixel_put(t_mlx *mlx, int x, int y, int color)
 {
 	char *dst;
-
 	 dst = mlx->img_data + (y * mlx->size_line + x * (mlx->bpp / 8));
-    *(unsigned int*)dst = color;
+	if (x < width && x >= 0 && y < heigth && y >= 0)
+	*(unsigned int*)dst = color;
 
 	//*(unsigned int*)&mlx->img_data[x * mlx->size_line + y * (mlx->bpp/ 8)] = color;
 	

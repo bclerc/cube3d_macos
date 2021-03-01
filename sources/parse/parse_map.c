@@ -6,7 +6,7 @@
 /*   By: bclerc <bclerc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/09 11:04:18 by bclerc            #+#    #+#             */
-/*   Updated: 2021/02/25 12:15:39 by bclerc           ###   ########.fr       */
+/*   Updated: 2021/03/01 13:39:19 by bclerc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int is_map(char *line)
 	i = 0;
 	while (line[i] == ' ' || line[i] == '	')
 		i++;
-	if (line[i] == '1' || line[i] == '0')
+	if (line[i] == '1' || line[i] == '0' || line[i] == '2')
 		return (1);
 	free(line);
 	return (0);

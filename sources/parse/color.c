@@ -6,7 +6,7 @@
 /*   By: bclerc <bclerc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/08 14:16:44 by bclerc            #+#    #+#             */
-/*   Updated: 2021/02/08 16:58:20 by bclerc           ###   ########.fr       */
+/*   Updated: 2021/03/01 13:12:50 by bclerc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,5 @@ int	get_color(t_cube *cube, char *line)
 	else
 		set_color(ft_atoi(tab[0]), ft_atoi(tab[1]), ft_atoi(tab[2]), &cube->R_COLOR);
 	i = 0;
-	delete_tab(tab);
 	return (1);
 }

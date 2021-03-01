@@ -6,7 +6,7 @@
 /*   By: bclerc <bclerc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/08 11:38:52 by bclerc            #+#    #+#             */
-/*   Updated: 2021/02/25 12:16:43 by bclerc           ###   ########.fr       */
+/*   Updated: 2021/03/01 12:50:17 by bclerc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,16 +78,18 @@ int	deal_key(t_cube *cube)
 	if (cube->mlx->up == 1)
 		move_up(cube);
 	if (cube->mlx->down == 1)
-	{
-	 cube->player->x -= cube->dirx * 1;
-     cube->player->y -= cube->diry * 1;
-	}
+		move_back(cube);
 	if (cube->mlx->left == 1)
 		turn_left(cube);
 	if (cube->mlx->right == 1)
 		turn_right(cube);
 	display(cube);
 	mlx_put_image_to_window(cube->mlx->mlx, cube->mlx->win, cube->mlx->img_ptr, 0, 0);
+	mlx_string_put(cube->mlx->mlx, cube->mlx->win, 0, 5, 0xFF00FF, "X: ");
+	mlx_string_put(cube->mlx->mlx, cube->mlx->win, 20, 5, 0xFF00FF, ft_itoa((int)cube->player->x));
+	mlx_string_put(cube->mlx->mlx, cube->mlx->win, 0, 25, 0xFF00FF, "Y: ");	
+	mlx_string_put(cube->mlx->mlx, cube->mlx->win, 20, 25, 0xFF00FF, ft_itoa((int)cube->player->y));
+	printf("%c | %.3f %.3f < direction > %.3f %.3f \n", cube->map->coord[(int)cube->player->y][(int)cube->player->x] ,cube->dirx, cube->diry, cube->planex, cube->planey);
 	return (1);
 }
 
@@ -122,6 +124,7 @@ int main(int argc, char **argv)
 	printf("X: %d, Y: %d\nNO: %s\nSO %s\nWE %s\nEA %s\nS %s", cube->R_X, cube->R_Y, cube->NO, cube->SO, cube->WE, cube->EA, cube->SPRITE);
 	printf("\nF %d, %d, %d\nC %d, %d, %d\n", cube->G_COLOR.r, cube->G_COLOR.g, cube->G_COLOR.b, cube->R_COLOR.r, cube->R_COLOR.g, cube->R_COLOR.b);
 	printf("\n Posx: %f, posy: %f, Max x: %d, Max y: %d\n",cube->player->x, cube->player->y, cube->map->max_x, cube->map->max_y);	
+	//while (1);
 	cube->mlx = init_mlx();
 	load_texture(cube);
 
