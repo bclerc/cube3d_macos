@@ -6,7 +6,7 @@
 /*   By: bclerc <bclerc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/22 10:45:49 by bclerc            #+#    #+#             */
-/*   Updated: 2021/03/01 15:57:55 by bclerc           ###   ########.fr       */
+/*   Updated: 2021/03/05 19:16:32 by bclerc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,11 @@
 
 void	move_up(t_cube *cube)
 {
-	if (cube->map->coord[(int)cube->player->y][(int)(cube->player->x + cube->dirx * movespeed)] - '0' == 0)
+	if (cube->map->coord[(int)cube->player->y]
+		[(int)(cube->player->x + cube->dirx * movespeed)] - '0' == 0)
 		cube->player->x += cube->dirx * movespeed;
-	if (cube->map->coord[(int)(cube->player->y + cube->diry * movespeed)][(int)cube->player->x] - '0' == 0)
+	if (cube->map->coord[(int)(cube->player->y + cube->diry * movespeed)]
+		[(int)cube->player->x] - '0' == 0)
 		cube->player->y += cube->diry * movespeed;
 }
 
@@ -173,7 +175,7 @@ void	display(t_cube *cube)
 		draw_pixel(x, &ray, cube);
 		verLine(mlx, x, 0, ray.drawstart, *(int*)&cube->R_COLOR);
 		verLine(mlx, x, ray.drawend, heigth, *(int*)&cube->G_COLOR);
-
+		drawSprite(cube, &ray, x);
 		x+=2;		
 	}
 }	

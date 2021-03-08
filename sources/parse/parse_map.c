@@ -6,7 +6,7 @@
 /*   By: bclerc <bclerc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/09 11:04:18 by bclerc            #+#    #+#             */
-/*   Updated: 2021/03/01 13:39:19 by bclerc           ###   ########.fr       */
+/*   Updated: 2021/03/03 14:42:28 by bclerc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@ int is_player(t_cube *cube, char c, int x, int y)
 	{
 		cube->player->check = 1;
 		cube->player->view = c;
-		cube->player->x = x;
-		cube->player->y = y;
+		cube->player->x = x + 0.0;
+		cube->player->y = y + 0.5;
 	}
 	return (1);
 }
