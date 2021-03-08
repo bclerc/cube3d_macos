@@ -6,7 +6,7 @@
 /*   By: bclerc <bclerc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/08 11:35:47 by bclerc            #+#    #+#             */
-/*   Updated: 2021/03/05 19:15:21 by bclerc           ###   ########.fr       */
+/*   Updated: 2021/03/08 13:58:04 by bclerc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define CUBE3D_H
 
 # include "libft/libft.h"
+# include <pthread.h>
 # include "gnl/get_next_line.h"
 # include "minilibx/mlx.h"
 # include <stdio.h>
@@ -55,6 +56,7 @@ typedef struct	s_raycast
 	int lineheight;
 	double texPos;
 	int texy;
+	int	sprite;
 	int color;
 	int drawstart;
 	int drawend;
@@ -124,6 +126,8 @@ typedef	struct	s_map
 /// cast int t_color
 typedef	struct	s_cube
 {	
+	pthread_t  thread_id;
+	pthread_attr_t attr;
 	double dirx;
 	double diry;
 	double planey;
@@ -133,6 +137,8 @@ typedef	struct	s_cube
 	int fd_map2;
 	int R_X;
 	int	R_Y;
+	int x;
+	t_raycast *cast;
 	t_texture **texture;
 	t_mlx *mlx;
 	t_color G_COLOR;
@@ -149,8 +155,8 @@ typedef	struct	s_cube
 }				t_cube;
 
 
-void drawSprite(t_cube *cube, t_raycast *ray, int x);
-void tex_error(char *path, char *texture);
+void	*drawSprite(void *cube);
+void	tex_error(char *path, char *texture);
 void	move_up(t_cube *cube);
 void	move_back	(t_cube *cube);
 void	turn_right(t_cube *cube);

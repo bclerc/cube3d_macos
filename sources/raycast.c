@@ -6,7 +6,7 @@
 /*   By: bclerc <bclerc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/22 10:45:49 by bclerc            #+#    #+#             */
-/*   Updated: 2021/03/05 19:16:32 by bclerc           ###   ########.fr       */
+/*   Updated: 2021/03/08 15:52:33 by bclerc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -149,6 +149,7 @@ void	display(t_cube *cube)
 {
 	t_mlx		*mlx;
 	t_raycast	ray;
+
 	int			x;
 
 	mlx = cube->mlx;
@@ -175,7 +176,10 @@ void	display(t_cube *cube)
 		draw_pixel(x, &ray, cube);
 		verLine(mlx, x, 0, ray.drawstart, *(int*)&cube->R_COLOR);
 		verLine(mlx, x, ray.drawend, heigth, *(int*)&cube->G_COLOR);
-		drawSprite(cube, &ray, x);
-		x+=2;		
+		cube->x = x;
+		cube->cast = &ray;
+			drawSprite((void*)cube);
+			x+=1;		
 	}
+	
 }	

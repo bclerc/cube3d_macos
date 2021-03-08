@@ -6,7 +6,7 @@
 /*   By: bclerc <bclerc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/08 11:38:52 by bclerc            #+#    #+#             */
-/*   Updated: 2021/03/01 12:50:17 by bclerc           ###   ########.fr       */
+/*   Updated: 2021/03/08 13:58:30 by bclerc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,8 +98,8 @@ int main(int argc, char **argv)
 	int fd;
 	t_cube *cube;
 	t_texture *texture;
-
-	
+	pthread_t thread_id;
+	pthread_attr_t attr;
 
 	texture = (t_texture*)malloc(sizeof(t_texture));
 	cube = init_cube_s();
@@ -125,6 +125,9 @@ int main(int argc, char **argv)
 	printf("\nF %d, %d, %d\nC %d, %d, %d\n", cube->G_COLOR.r, cube->G_COLOR.g, cube->G_COLOR.b, cube->R_COLOR.r, cube->R_COLOR.g, cube->R_COLOR.b);
 	printf("\n Posx: %f, posy: %f, Max x: %d, Max y: %d\n",cube->player->x, cube->player->y, cube->map->max_x, cube->map->max_y);	
 	//while (1);
+	pthread_attr_init(&attr);
+	cube->attr = attr;
+	cube->thread_id = thread_id;
 	cube->mlx = init_mlx();
 	load_texture(cube);
 
