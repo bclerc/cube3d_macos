@@ -6,23 +6,31 @@
 /*   By: bclerc <bclerc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/04 12:50:41 by bclerc            #+#    #+#             */
-/*   Updated: 2021/03/09 14:52:46 by bclerc           ###   ########.fr       */
+/*   Updated: 2021/03/09 15:57:55 by bclerc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cube3d.h"
-
-
-#define numSprites 19
-;
-
+// px, py = Player position
 
 double ZBuffer[width];
+int calc_dist(int px, int py, int sx, int sy)
+{
+	return (sqrt(pow((sx - px), 2) + pow((sy - py),2)));
+}
 
-int spriteOrder[numSprites];
-double spriteDistance[numSprites];
-
-
+void sortSprite(t_sprite *sprite, int px, int py)
+{
+	int i;
+	i = 0;
+	while (i < 11)
+	{
+		calc_dist(px, py, sprite[i].x, sprite[i].y);
+		printf("Sprite %d (%d %d) have dist : %d\n", i, sprite[i].x, sprite[i].y, calc_dist(px, py, sprite[i].x, sprite[i].y));
+		i++;
+	}
+	
+}
 void *drawSprite(void *tmp)
 {	t_sprite *sprite;
 	t_cube *cube;
@@ -32,6 +40,10 @@ void *drawSprite(void *tmp)
 	ray = cube->cast;
 	sprite = cube->sprite;
     ZBuffer[x] = ray->pwalldist;
+	int spriteOrder[cube->n_sprite];
+	double spriteDistance[cube->n_sprite];
+	sortSprite(sprite, cube->player->x, cube->player->y);
+	while (1);
   for(int i = 0; i < cube->n_sprite; i++)
     {
       spriteOrder[i] = i;
@@ -39,7 +51,7 @@ void *drawSprite(void *tmp)
     }
 
     
-    for(int i = 0; i < numSprites; i++)
+    for(int i = 0; i < cube->n_sprite; i++)
     {
       double spriteX = sprite[spriteOrder[i]].x - cube->player->x;
       double spriteY = sprite[spriteOrder[i]].y - cube->player->y;
