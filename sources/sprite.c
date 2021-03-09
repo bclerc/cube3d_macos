@@ -6,27 +6,16 @@
 /*   By: bclerc <bclerc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/04 12:50:41 by bclerc            #+#    #+#             */
-/*   Updated: 2021/03/08 15:59:33 by bclerc           ###   ########.fr       */
+/*   Updated: 2021/03/09 14:48:04 by bclerc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cube3d.h"
 
 
-typedef struct Sprite
-{
-  double x;
-  double y;
-  int texture;
-}       Sprite;
-
 #define numSprites 19
+;
 
-Sprite sprite[numSprites] =
-{
-  {64, 13, 10},
-
-};
 
 double ZBuffer[width];
 
@@ -35,14 +24,15 @@ double spriteDistance[numSprites];
 
 
 void *drawSprite(void *tmp)
-{
+{	t_sprite *sprite;
 	t_cube *cube;
 	cube = (t_cube*)tmp;
 	t_raycast *ray;
 	int x = cube->x;
 	ray = cube->cast;
+	sprite = cube->sprite;
     ZBuffer[x] = ray->pwalldist;
-  for(int i = 0; i < numSprites; i++)
+  for(int i = 0; i < cube->n_sprite; i++)
     {
       spriteOrder[i] = i;
       spriteDistance[i] = ((cube->player->x - sprite[i].x) * (cube->player->x  - sprite[i].x) + (cube->player->y  - sprite[i].y) * (cube->player->y - sprite[i].y)); //sqrt not taken, unneeded

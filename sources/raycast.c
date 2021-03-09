@@ -6,7 +6,7 @@
 /*   By: bclerc <bclerc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/22 10:45:49 by bclerc            #+#    #+#             */
-/*   Updated: 2021/03/08 15:52:33 by bclerc           ###   ########.fr       */
+/*   Updated: 2021/03/09 14:42:26 by bclerc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -179,7 +179,7 @@ void	display(t_cube *cube)
 		cube->x = x;
 		cube->cast = &ray;
 			drawSprite((void*)cube);
-			x+=1;		
+			x+=2;		
 	}
 	
 }	

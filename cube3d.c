@@ -6,7 +6,7 @@
 /*   By: bclerc <bclerc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/08 11:38:52 by bclerc            #+#    #+#             */
-/*   Updated: 2021/03/08 13:58:30 by bclerc           ###   ########.fr       */
+/*   Updated: 2021/03/09 14:46:51 by bclerc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,8 +98,6 @@ int main(int argc, char **argv)
 	int fd;
 	t_cube *cube;
 	t_texture *texture;
-	pthread_t thread_id;
-	pthread_attr_t attr;
 
 	texture = (t_texture*)malloc(sizeof(t_texture));
 	cube = init_cube_s();
@@ -115,19 +113,19 @@ int main(int argc, char **argv)
 		printf("Erreur: FD %s incorrect", argv[1]);
 		return (0);
 	}
-
-
 	init_cube(cube);
 	first_read(cube);
 	parse_map(cube);
 	check_map(cube);
+	if (cube->n_sprite > 0)
+	{
+		register_sprite(cube);
+		printf("Sprite position %d %d \n", cube->sprite[0].x, cube->sprite[0].y);
+	}
 	printf("X: %d, Y: %d\nNO: %s\nSO %s\nWE %s\nEA %s\nS %s", cube->R_X, cube->R_Y, cube->NO, cube->SO, cube->WE, cube->EA, cube->SPRITE);
 	printf("\nF %d, %d, %d\nC %d, %d, %d\n", cube->G_COLOR.r, cube->G_COLOR.g, cube->G_COLOR.b, cube->R_COLOR.r, cube->R_COLOR.g, cube->R_COLOR.b);
 	printf("\n Posx: %f, posy: %f, Max x: %d, Max y: %d\n",cube->player->x, cube->player->y, cube->map->max_x, cube->map->max_y);	
-	//while (1);
-	pthread_attr_init(&attr);
-	cube->attr = attr;
-	cube->thread_id = thread_id;
+	printf("\nNombres de sprite : %d\n", cube->n_sprite);
 	cube->mlx = init_mlx();
 	load_texture(cube);
 

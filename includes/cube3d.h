@@ -6,7 +6,7 @@
 /*   By: bclerc <bclerc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/08 11:35:47 by bclerc            #+#    #+#             */
-/*   Updated: 2021/03/08 13:58:04 by bclerc           ###   ########.fr       */
+/*   Updated: 2021/03/09 14:30:07 by bclerc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,13 @@
 # define k_right 124
 # define rotspeed 0.06 
 # define movespeed 0.15
+
+typedef struct	s_sprite
+{
+	int x;
+	int y;
+	int dist;
+}				t_sprite;
 
 typedef struct s_texture
 {
@@ -126,8 +133,6 @@ typedef	struct	s_map
 /// cast int t_color
 typedef	struct	s_cube
 {	
-	pthread_t  thread_id;
-	pthread_attr_t attr;
 	double dirx;
 	double diry;
 	double planey;
@@ -137,13 +142,15 @@ typedef	struct	s_cube
 	int fd_map2;
 	int R_X;
 	int	R_Y;
+	int	n_sprite;
 	int x;
+	t_sprite  *sprite;
 	t_raycast *cast;
 	t_texture **texture;
 	t_mlx *mlx;
 	t_color G_COLOR;
 	t_color R_COLOR;
-	t_map 	*map;	
+	t_map 	*map;
 	t_player *player;
 	char *NO;
 	char *SO;
@@ -154,7 +161,7 @@ typedef	struct	s_cube
 
 }				t_cube;
 
-
+void	register_sprite(t_cube *cube);
 void	*drawSprite(void *cube);
 void	tex_error(char *path, char *texture);
 void	move_up(t_cube *cube);

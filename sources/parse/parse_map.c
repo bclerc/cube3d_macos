@@ -6,11 +6,43 @@
 /*   By: bclerc <bclerc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/09 11:04:18 by bclerc            #+#    #+#             */
-/*   Updated: 2021/03/03 14:42:28 by bclerc           ###   ########.fr       */
+/*   Updated: 2021/03/09 14:48:28 by bclerc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "../../includes/cube3d.h"
+
+void register_sprite(t_cube *cube)
+{
+	int i;
+	int x;
+	int y;
+	t_sprite *tmp;
+	
+	if (!(tmp = (t_sprite*)malloc(sizeof(t_sprite) * cube->n_sprite)))
+		return ;
+	i = 0;
+	x = 0;
+	y = 0;
+	while (cube->map->coord[y])
+	{
+		x = 0;
+		while (cube->map->coord[y][x])
+		{
+			if (cube->map->coord[y][x] == '2')
+			{
+				tmp[i].x = x;
+				tmp[i].y = y;
+				tmp[i].dist = 0;
+				cube->map->coord[y][x] = '0';
+				i++;
+			}
+			x++;
+		}
+		y++;
+	}
+	cube->sprite = tmp;
+}
 
 int is_player(t_cube *cube, char c, int x, int y)
 {
