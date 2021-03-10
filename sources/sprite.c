@@ -6,7 +6,7 @@
 /*   By: bclerc <bclerc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/04 12:50:41 by bclerc            #+#    #+#             */
-/*   Updated: 2021/03/10 17:13:36 by bclerc           ###   ########.fr       */
+/*   Updated: 2021/03/10 17:29:31 by bclerc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,10 +59,6 @@ void *drawSprite(void *tmp)
 	int spriteOrder[cube->n_sprite];
 	double spriteDistance[cube->n_sprite];
 	sortSprite(cube, cube->player->x, cube->player->y);
-	for(int b = cube->n_sprite -1; b >= 0; b--)
-	{
-		//printf("Sprite %d (%d;%d) have dist : %d\n", b, sprite[b].x, sprite[b].y, calc_dist(cube, sprite[b].x, sprite[b].y));
-	}
  	 for(int i = 0; i < cube->n_sprite; i++)
     {
       spriteOrder[i] = i;
@@ -103,7 +99,7 @@ void *drawSprite(void *tmp)
           	int texY = ((d * 64) / spriteHeight) / 256;
 
 			ray->color = *(int*)&cube->texture[4]->imgdat[(texY * (cube->texture[4]->size_line) + texX * (cube->texture[4]->bpp/8))];
-            if (ray->color != 0)
+    
                 pixel_put(cube->mlx, x, y, ray->color);
         
         }
@@ -111,6 +107,5 @@ void *drawSprite(void *tmp)
 	  x++;
 	}
     }
-while(1);
 }
     
