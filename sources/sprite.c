@@ -6,7 +6,7 @@
 /*   By: bclerc <bclerc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/04 12:50:41 by bclerc            #+#    #+#             */
-/*   Updated: 2021/03/09 15:57:55 by bclerc           ###   ########.fr       */
+/*   Updated: 2021/03/10 17:02:20 by bclerc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,25 +14,41 @@
 // px, py = Player position
 
 double ZBuffer[width];
-int calc_dist(int px, int py, int sx, int sy)
+int calc_dist(t_cube *cube, int sx, int sy)
 {
-	return (sqrt(pow((sx - px), 2) + pow((sy - py),2)));
+	return (sqrt(pow((sx - (int)cube->player->x), 2) + pow((sy - (int)cube->player->y),2)));
 }
 
-void sortSprite(t_sprite *sprite, int px, int py)
+void sortSprite(t_cube *cube, int sx, int sy)
 {
 	int i;
+	int j;
+	int n;
+	t_sprite *sprite;
+	t_sprite *sprite2;
+	sprite = cube->sprite;
+	n = cube->n_sprite;
 	i = 0;
-	while (i < 11)
+	while (i < n - 1)
 	{
-		calc_dist(px, py, sprite[i].x, sprite[i].y);
-		printf("Sprite %d (%d %d) have dist : %d\n", i, sprite[i].x, sprite[i].y, calc_dist(px, py, sprite[i].x, sprite[i].y));
+			sprite = &cube->sprite[i];
+			sprite2 = &cube->sprite[i + 1];
+			if (calc_dist(cube, sprite->x, sprite->y) > calc_dist(cube, sprite2->x, sprite2->y))
+			{
+				t_sprite tmp;
+				tmp = cube->sprite[i];
+				cube->sprite[i] = cube->sprite[i + 1];
+				cube->sprite[i + 1] = tmp;
+				i = 1;
+			}
 		i++;
 	}
-	
+
 }
+	
 void *drawSprite(void *tmp)
-{	t_sprite *sprite;
+{	
+	t_sprite *sprite;
 	t_cube *cube;
 	cube = (t_cube*)tmp;
 	t_raycast *ray;
@@ -42,15 +58,16 @@ void *drawSprite(void *tmp)
     ZBuffer[x] = ray->pwalldist;
 	int spriteOrder[cube->n_sprite];
 	double spriteDistance[cube->n_sprite];
-	sortSprite(sprite, cube->player->x, cube->player->y);
-	while (1);
-  for(int i = 0; i < cube->n_sprite; i++)
+	sortSprite(cube, cube->player->x, cube->player->y);
+	for(int b = 0; b < cube->n_sprite; b++)
+	{
+		printf("Sprite %d (%d;%d) have dist : %d\n", b, sprite[b].x, sprite[b].y, calc_dist(cube, sprite[b].x, sprite[b].y));
+	}
+ 	 for(int i = cube->n_sprite; i < cube->n_sprite; i++)
     {
       spriteOrder[i] = i;
       spriteDistance[i] = ((cube->player->x - sprite[i].x) * (cube->player->x  - sprite[i].x) + (cube->player->y  - sprite[i].y) * (cube->player->y - sprite[i].y)); //sqrt not taken, unneeded
     }
-
-    
     for(int i = 0; i < cube->n_sprite; i++)
     {
       double spriteX = sprite[spriteOrder[i]].x - cube->player->x;
@@ -94,6 +111,6 @@ void *drawSprite(void *tmp)
 	  x++;
 	}
     }
-
+while(1);
 }
     
