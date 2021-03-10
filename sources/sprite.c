@@ -6,7 +6,7 @@
 /*   By: bclerc <bclerc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/04 12:50:41 by bclerc            #+#    #+#             */
-/*   Updated: 2021/03/10 17:02:20 by bclerc           ###   ########.fr       */
+/*   Updated: 2021/03/10 17:13:36 by bclerc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,11 +59,11 @@ void *drawSprite(void *tmp)
 	int spriteOrder[cube->n_sprite];
 	double spriteDistance[cube->n_sprite];
 	sortSprite(cube, cube->player->x, cube->player->y);
-	for(int b = 0; b < cube->n_sprite; b++)
+	for(int b = cube->n_sprite -1; b >= 0; b--)
 	{
-		printf("Sprite %d (%d;%d) have dist : %d\n", b, sprite[b].x, sprite[b].y, calc_dist(cube, sprite[b].x, sprite[b].y));
+		//printf("Sprite %d (%d;%d) have dist : %d\n", b, sprite[b].x, sprite[b].y, calc_dist(cube, sprite[b].x, sprite[b].y));
 	}
- 	 for(int i = cube->n_sprite; i < cube->n_sprite; i++)
+ 	 for(int i = 0; i < cube->n_sprite; i++)
     {
       spriteOrder[i] = i;
       spriteDistance[i] = ((cube->player->x - sprite[i].x) * (cube->player->x  - sprite[i].x) + (cube->player->y  - sprite[i].y) * (cube->player->y - sprite[i].y)); //sqrt not taken, unneeded
