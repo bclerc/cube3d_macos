@@ -6,7 +6,7 @@
 /*   By: bclerc <bclerc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/22 10:45:49 by bclerc            #+#    #+#             */
-/*   Updated: 2021/03/09 14:42:26 by bclerc           ###   ########.fr       */
+/*   Updated: 2021/03/11 15:57:37 by bclerc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ void	draw_pixel(int x, t_raycast *ray, t_cube *cube)
 {
 	for( int y = ray->drawstart; y < ray->drawend; y++)
 	{
+		ray->y = y;
 		ray->texy = (int)ray->texPos & (64 - 1);
 		ray->texPos += ray->step;
 		ray->color = *(int*)&ray->texture->imgdat[(ray->texy * (ray->texture->size_line) + ray->texx * (ray->texture->bpp/8))];
@@ -172,14 +173,14 @@ void	display(t_cube *cube)
 			ray.drawend = heigth -1;
 		ray.texture = get_direction(cube, &ray);
 		ray.step = 1.0 * 64 / ray.lineheight;
-		ray.texPos = (ray.drawstart - heigth / 2 + ray.lineheight / 2) * ray.step;
+		ray.texPos = (ray.drawstart - heigth/ 2 + ray.lineheight / 2) * ray.step;
 		draw_pixel(x, &ray, cube);
 		verLine(mlx, x, 0, ray.drawstart, *(int*)&cube->R_COLOR);
 		verLine(mlx, x, ray.drawend, heigth, *(int*)&cube->G_COLOR);
 		cube->x = x;
 		cube->cast = &ray;
 			drawSprite((void*)cube);
-			x+=2;		
+			x+=2;
 	}
 	
 }	

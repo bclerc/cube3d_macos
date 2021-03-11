@@ -6,7 +6,7 @@
 /*   By: bclerc <bclerc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/08 11:35:47 by bclerc            #+#    #+#             */
-/*   Updated: 2021/03/09 15:54:33 by bclerc           ###   ########.fr       */
+/*   Updated: 2021/03/11 15:41:42 by bclerc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,14 +19,14 @@
 # include "minilibx/mlx.h"
 # include <stdio.h>
 # include <math.h>
-# define heigth 720
-# define width	1100
+# define heigth 700
+# define width	920
 # define k_up  126
 # define k_down 125
 # define k_left 123
 # define k_right 124
 # define rotspeed 0.06 
-# define movespeed 0.15
+# define movespeed 0.30
 
 typedef struct	s_sprite
 {
@@ -64,6 +64,7 @@ typedef struct	s_raycast
 	double texPos;
 	int texy;
 	int	sprite;
+	int y;
 	int color;
 	int drawstart;
 	int drawend;
