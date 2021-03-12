@@ -6,7 +6,7 @@
 /*   By: bclerc <bclerc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/08 11:35:47 by bclerc            #+#    #+#             */
-/*   Updated: 2021/03/11 15:41:42 by bclerc           ###   ########.fr       */
+/*   Updated: 2021/03/12 11:34:46 by bclerc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@
 # include "minilibx/mlx.h"
 # include <stdio.h>
 # include <math.h>
-# define heigth 700
-# define width	920
+# define heigth 800
+# define width	1200
 # define k_up  126
 # define k_down 125
 # define k_left 123
@@ -46,6 +46,28 @@ typedef struct s_texture
 	int w;
 
 }				t_texture;
+
+typedef	struct	s_sprite_s
+{
+	int		*sorder;
+	double	*sdist;
+	double	spritex;
+	double	spritey;
+	double	invdet;
+	double	transformx;
+	double	transformy;
+	int		screenx;
+	int		vmscreen;
+	int		sheight;
+	int		drawstarty;
+	int		drawstartx;
+	int		drawendy;
+	int		drawendx;
+	int		swidth;
+	int		texx;
+	int		texy;
+
+}				t_sprite_s;
 
 typedef struct	s_raycast
 {

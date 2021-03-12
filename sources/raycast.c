@@ -6,7 +6,7 @@
 /*   By: bclerc <bclerc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/22 10:45:49 by bclerc            #+#    #+#             */
-/*   Updated: 2021/03/11 15:57:37 by bclerc           ###   ########.fr       */
+/*   Updated: 2021/03/12 11:20:57 by bclerc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ void 	move_back(t_cube *cube)
 	if (cube->map->coord[(int)(cube->player->y - cube->diry * movespeed)][(int)cube->player->x] - '0' == 0)
 		cube->player->y -= cube->diry * movespeed;
 }
+
 void	turn_left(t_cube *cube)
 {
 	double oldDirx = cube->dirx;
