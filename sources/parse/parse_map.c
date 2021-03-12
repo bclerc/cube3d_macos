@@ -6,19 +6,20 @@
 /*   By: bclerc <bclerc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/09 11:04:18 by bclerc            #+#    #+#             */
-/*   Updated: 2021/03/09 14:48:28 by bclerc           ###   ########.fr       */
+/*   Updated: 2021/03/12 16:58:09 by bclerc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "../../includes/cube3d.h"
+#include "../../includes/cube3d.h"
 
-void register_sprite(t_cube *cube)
+void
+	register_sprite(t_cube *cube)
 {
-	int i;
-	int x;
-	int y;
-	t_sprite *tmp;
-	
+	t_sprite	*tmp;
+	int			i;
+	int			x;
+	int			y;
+
 	if (!(tmp = (t_sprite*)malloc(sizeof(t_sprite) * cube->n_sprite)))
 		return ;
 	i = 0;
@@ -44,7 +45,8 @@ void register_sprite(t_cube *cube)
 	cube->sprite = tmp;
 }
 
-int is_player(t_cube *cube, char c, int x, int y)
+int
+	is_player(t_cube *cube, char c, int x, int y)
 {
 	if (c == 'N' || c == 'S' || c == 'E' || c == 'W')
 	{
@@ -56,9 +58,11 @@ int is_player(t_cube *cube, char c, int x, int y)
 	return (1);
 }
 
-int is_map(char *line)
+int
+	is_map(char *line)
 {
 	int i;
+
 	i = 0;
 	while (line[i] == ' ' || line[i] == '	')
 		i++;
@@ -68,12 +72,13 @@ int is_map(char *line)
 	return (0);
 }
 
-int first_read(t_cube *cube)
+int
+	first_read(t_cube *cube)
 {
-	char *line;
-	int length;
-	int	y;
-	int x;
+	char	*line;
+	int		length;
+	int		y;
+	int		x;
 
 	x = 0;
 	y = 0;
@@ -90,32 +95,33 @@ int first_read(t_cube *cube)
 	}
 	free(line);
 	close(cube->fd_map);
-	cube->map->max_y =  y;
-	cube->map->max_x =  x;
-	
+	cube->map->max_y = y;
+	cube->map->max_x = x;
 	return (1);
 }
 
-int parse_map(t_cube *cube)
+int
+	parse_map(t_cube *cube)
 {
-	char *line;
-	int fd;
-	int y;
-	
+	char	*line;
+	int		fd;
+	int		y;
+
 	y = 0;
 	cube->map->coord = (char **)malloc((cube->map->max_y + 1) * sizeof(char*));
 	while (get_next_line(cube->fd_map2, &line) == 1)
 	{
 		if (!(is_map(line)))
 			continue;
-		cube->map->coord[y] = (char*)malloc((cube->map->max_x + 1) * sizeof(char));
+		cube->map->coord[y] = (char*)malloc((cube->map->max_x + 1)
+			* sizeof(char));
 		ft_bzero(cube->map->coord[y], cube->map->max_x + 1);
-		ft_memcpy(cube->map->coord[y],line, ft_strlen(line));
+		ft_memcpy(cube->map->coord[y], line, ft_strlen(line));
 		y++;
 		free(line);
 	}
 	cube->map->coord[y] = 0;
-	free(line);	
+	free(line);
 	close(cube->fd_map2);
 	return (0);
 }
