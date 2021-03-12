@@ -6,7 +6,7 @@
 /*   By: bclerc <bclerc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/08 11:35:47 by bclerc            #+#    #+#             */
-/*   Updated: 2021/03/12 16:10:46 by bclerc           ###   ########.fr       */
+/*   Updated: 2021/03/12 16:30:07 by bclerc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -201,11 +201,7 @@ void	error_m(char *msg);
 void	map_error_m(t_map *map, int x, int y, char *msg);
 void	display(t_cube *cube);
 int		is_player(t_cube *cube, char c, int x, int y);
-void	verLine(t_mlx *mlx, int x, int y1, int y2, int color);
-void	drawMap(t_cube *cube);
-void	drawSqr(t_mlx *mlx, int x, int y, int size, int color);
-void	drawRect(t_mlx *x, int x1, int y1, int x2, int y2, int color);
-void	drawLine(t_mlx *x, int x1, int y1, int x2, int y2, int color);
+void	verline(t_mlx *mlx, int x, int y1, int y2, int color);
 void	pixel_put(t_mlx *mlx, int x, int y, int color);
 void	clear(t_mlx *mlx, int color);
 int		first_read(t_cube *cube);

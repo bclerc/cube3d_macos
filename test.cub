@@ -3,11 +3,11 @@ R 1910 1081
 F 51,204,255
 C 0, 154 , 236
 
-WE sources/texture/greystone.xpm
-NO sources/texture/redbrick.xpm
-EA sources/texture/wood.xpm
-SO sources/texture/eagle.xpm
-S sources/texture/barrel.xpm
+WE sources/texture/xpm/greystone.xpm
+NO sources/texture/xpm/redbrick.xpm
+EA sources/texture/xpm/wood.xpm
+SO sources/texture/xpm/eagle.xpm
+S sources/texture/xpm/barrel.xpm
 
 1111111111111111111111111111111111111111111111111111111111111111111111111111111
 1000001010001000001000001010000010101000000000000000000000000000000000000000001
