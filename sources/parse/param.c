@@ -6,15 +6,17 @@
 /*   By: bclerc <bclerc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/08 12:50:18 by bclerc            #+#    #+#             */
-/*   Updated: 2021/02/15 11:34:44 by bclerc           ###   ########.fr       */
+/*   Updated: 2021/03/12 16:51:09 by bclerc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cube3d.h"
 
-int def_path(t_cube *cube, char *line)
-{	int i;
-	char **path;
+int	def_path(t_cube *cube, char *line)
+{
+	char	**path;
+	int		i;
+
 	i = 0;
 	if (line[i] == 'N' && line[i + 1] == 'O')
 		param_path(&line[i + 2], &cube->NO);
@@ -29,7 +31,7 @@ int def_path(t_cube *cube, char *line)
 	return (1);
 }
 
-int param_path(char *line, char **path)
+int	param_path(char *line, char **path)
 {
 	int i;
 
@@ -40,13 +42,13 @@ int param_path(char *line, char **path)
 	return (1);
 }
 
-int param_r(t_cube *cube, char *line)
+int	param_r(t_cube *cube, char *line)
 {
 	int i;
 
 	i = 0;
 	while (line[i] == 'R' || line[i] == ' ')
-	i++;
+		i++;
 	while (ft_isdigit(line[i]))
 	{
 		cube->R_X = (cube->R_X * 10) + (line[i] - '0');
@@ -64,6 +66,6 @@ int param_r(t_cube *cube, char *line)
 	else
 	{
 		return (0);
-	}	
-	return (1);	
+	}
+	return (1);
 }

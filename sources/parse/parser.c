@@ -6,11 +6,11 @@
 /*   By: bclerc <bclerc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/08 11:55:21 by bclerc            #+#    #+#             */
-/*   Updated: 2021/03/09 14:15:03 by bclerc           ###   ########.fr       */
+/*   Updated: 2021/03/12 16:52:27 by bclerc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "../../includes/cube3d.h"
+#include "../../includes/cube3d.h"
 
 void	dispatch(t_cube *cube, char *line)
 {
@@ -24,7 +24,7 @@ void	dispatch(t_cube *cube, char *line)
 		if (line[i] == 'R')
 			valid = param_r(cube, line);
 		if (line[i] == 'F' || line[i] == 'C')
-			valid = get_color(cube, line);;
+			valid = get_color(cube, line);
 		i++;
 	}
 }
@@ -32,7 +32,7 @@ void	dispatch(t_cube *cube, char *line)
 int		init_cube(t_cube *cube)
 {
 	char *line;
-	
+
 	line = 0;
 	while (get_next_line(cube->fd, &line) == 1)
 	{

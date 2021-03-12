@@ -6,15 +6,16 @@
 /*   By: bclerc <bclerc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/08 14:16:44 by bclerc            #+#    #+#             */
-/*   Updated: 2021/03/01 13:12:50 by bclerc           ###   ########.fr       */
+/*   Updated: 2021/03/12 16:49:42 by bclerc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "../../includes/cube3d.h"
+#include "../../includes/cube3d.h"
 
-void	delete_tab(char **tab)
+void		delete_tab(char **tab)
 {
 	int i;
+
 	i = 0;
 	while (tab[i])
 		i++;
@@ -26,7 +27,7 @@ void	delete_tab(char **tab)
 	free(tab);
 }
 
-int set_color(int r, int g, int b, t_color *loc)
+int			set_color(int r, int g, int b, t_color *loc)
 {
 	loc->r = r;
 	loc->g = g;
@@ -35,7 +36,7 @@ int set_color(int r, int g, int b, t_color *loc)
 	return (1);
 }
 
-int	get_color(t_cube *cube, char *line)
+int			get_color(t_cube *cube, char *line)
 {
 	char	**tab;
 	int		i;
@@ -45,9 +46,11 @@ int	get_color(t_cube *cube, char *line)
 		i++;
 	tab = ft_strsplit(&line[i], ',');
 	if (line[0] == 'F')
-		set_color(ft_atoi(tab[0]), ft_atoi(tab[1]), ft_atoi(tab[2]), &cube->G_COLOR);
+		set_color(ft_atoi(tab[0]), ft_atoi(tab[1]), ft_atoi(tab[2]),
+		&cube->G_COLOR);
 	else
-		set_color(ft_atoi(tab[0]), ft_atoi(tab[1]), ft_atoi(tab[2]), &cube->R_COLOR);
+		set_color(ft_atoi(tab[0]), ft_atoi(tab[1]), ft_atoi(tab[2]),
+		&cube->R_COLOR);
 	i = 0;
 	return (1);
 }
