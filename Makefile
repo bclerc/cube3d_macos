@@ -19,7 +19,8 @@ SOURCES = \
 		./sources/vector.c \
 		./sources/init.c \
 		./sources/raycast.c \
-		./sources/sprite.c \
+		./sources/sprite/sprite.c \
+		./sources/sprite/sprite_utils.c \
 		cube3d.c
 
 

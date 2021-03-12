@@ -6,7 +6,7 @@
 /*   By: bclerc <bclerc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/22 10:45:49 by bclerc            #+#    #+#             */
-/*   Updated: 2021/03/12 11:20:57 by bclerc           ###   ########.fr       */
+/*   Updated: 2021/03/12 14:59:00 by bclerc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -180,7 +180,7 @@ void	display(t_cube *cube)
 		verLine(mlx, x, ray.drawend, heigth, *(int*)&cube->G_COLOR);
 		cube->x = x;
 		cube->cast = &ray;
-			drawSprite((void*)cube);
+			drawsprite(cube, &ray);
 			x+=2;
 	}
 	
