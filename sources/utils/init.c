@@ -6,18 +6,18 @@
 /*   By: bclerc <bclerc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/18 14:19:44 by bclerc            #+#    #+#             */
-/*   Updated: 2021/03/09 14:32:06 by bclerc           ###   ########.fr       */
+/*   Updated: 2021/03/12 16:42:43 by bclerc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "../includes/cube3d.h"
+#include "../../includes/cube3d.h"
 
-t_mlx *init_mlx()
+t_mlx		*init_mlx(void)
 {
-	int bpp;
-	int size_line;
-	int endian;
-	t_mlx *mlx;
+	t_mlx	*mlx;
+	int		bpp;
+	int		size_line;
+	int		endian;
 
 	if (!(mlx = (t_mlx*)malloc(sizeof(t_mlx))))
 		return (0);
@@ -31,7 +31,7 @@ t_mlx *init_mlx()
 	return (mlx);
 }
 
-t_player *init_player()
+t_player	*init_player(void)
 {
 	t_player *player;
 
@@ -39,10 +39,10 @@ t_player *init_player()
 		return (0);
 	player->x = 5;
 	player->y = 5;
-	return (player);	
+	return (player);
 }
 
-t_map *init_map()
+t_map		*init_map(void)
 {
 	t_map *map;
 
@@ -52,11 +52,10 @@ t_map *init_map()
 	map->max_x = 0;
 	map->max_y = 0;
 	map->parsed = 0;
-
 	return (map);
 }
 
-t_cube *init_cube_s()
+t_cube		*init_cube_s(void)
 {
 	t_cube *cube;
 
