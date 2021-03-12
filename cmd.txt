@@ -1,6 +1,0 @@
-
-gcc cube3d.c includes/gnl/get_next_line.c includes/gnl/get_next_line.h 
-sources/parse/parser.c includes/libft/libft.a sources/parse/param.c 
-sources/parse/color.c sources/parse/parse_map.c sources/parse/parse_utils.c
- sources/utils/error.c sources/vector.c
-  -L includes/minilibx/ -lmlx -framework OpenGL -framework Appkit

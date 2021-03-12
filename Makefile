@@ -15,10 +15,12 @@ SOURCES = \
 		./sources/parse/parse_map.c \
 		./sources/parse/parse_utils.c \
 		./sources/utils/error.c \
+		./sources/utils/touch.c \
 		./sources/texture/texture_init.c \
 		./sources/vector.c \
 		./sources/init.c \
-		./sources/raycast.c \
+		./sources/raycasting/raycast.c \
+		./sources/raycasting/raycast_utils.c \
 		./sources/sprite/sprite.c \
 		./sources/sprite/sprite_utils.c \
 		cube3d.c
