@@ -6,7 +6,7 @@
 /*   By: bclerc <bclerc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/08 11:38:52 by bclerc            #+#    #+#             */
-/*   Updated: 2021/03/15 15:27:09 by bclerc           ###   ########.fr       */
+/*   Updated: 2021/03/15 16:46:40 by bclerc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,7 +128,7 @@ int main(int argc, char **argv)
 	mlx_hook(cube->mlx->win, 3, 1L<<1, key_relache, cube);
 	mlx_loop_hook(cube->mlx->mlx, deal_key, cube);
 	mlx_loop(cube->mlx->mlx);
-
+	system("leaks cube3d");
 	kill_m(cube->map);
 	kill_c(cube);
 }

@@ -6,7 +6,7 @@
 /*   By: bclerc <bclerc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/09 11:04:18 by bclerc            #+#    #+#             */
-/*   Updated: 2021/03/15 10:24:00 by bclerc           ###   ########.fr       */
+/*   Updated: 2021/03/15 16:10:12 by bclerc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,8 +52,8 @@ int
 	{
 		cube->player->check = 1;
 		cube->player->view = c;
-		cube->player->x = x + 0.0;
-		cube->player->y = y + 0.5;
+		cube->player->x = x + 0.05;
+		cube->player->y = y + 0.05;
 	}
 	return (1);
 }

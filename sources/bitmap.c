@@ -6,7 +6,7 @@
 /*   By: bclerc <bclerc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/15 11:23:18 by bclerc            #+#    #+#             */
-/*   Updated: 2021/03/15 15:13:34 by bclerc           ###   ########.fr       */
+/*   Updated: 2021/03/15 16:03:28 by bclerc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,9 +74,9 @@ void	to_bmp(t_cube *cube)
 {
 	int fd;
 
-	printf("Creating save.bmp, Please wait ...\n");
+	printf("Info: Creating save.bmp, Please wait ...\n");
 	if (!(fd = open("save.bmp", O_CREAT | O_RDWR)))
 		exit(-1);
 	set_header(cube, fd);
-	printf("save.bmp was created !");
+	printf("Info: save.bmp created !\n");
 }
