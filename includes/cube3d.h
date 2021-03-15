@@ -6,7 +6,7 @@
 /*   By: bclerc <bclerc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/08 11:35:47 by bclerc            #+#    #+#             */
-/*   Updated: 2021/03/15 10:27:45 by bclerc           ###   ########.fr       */
+/*   Updated: 2021/03/15 11:53:39 by bclerc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -183,6 +183,7 @@ typedef	struct	s_cube
 }				t_cube;
 
 t_texture	*get_direction(t_cube *cube, t_raycast *ray);
+void	to_bmp(t_cube *cube);
 void	calc_draw(t_cube* cube, t_raycast *ray);
 void	init_ray(int x, t_raycast *ray, t_cube *cube);
 void	draw_pixel(int x, t_raycast *ray, t_cube *cube);

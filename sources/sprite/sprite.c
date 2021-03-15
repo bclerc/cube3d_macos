@@ -6,7 +6,7 @@
 /*   By: bclerc <bclerc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/04 12:50:41 by bclerc            #+#    #+#             */
-/*   Updated: 2021/03/15 10:31:42 by bclerc           ###   ########.fr       */
+/*   Updated: 2021/03/15 14:30:42 by bclerc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ void	print_sprite(t_cube *cube, t_sprite_s *s, t_raycast *ray, int x)
 			ray->color = *(int*)&cube->texture[4]
 			->imgdat[(s->texy * (cube->texture[4]->size_line)
 			+ s->texx * (cube->texture[4]->bpp / 8))];
-			if (ray->color != 0)
+			if (ray->color != 0xFFFFFF)
 				pixel_put(cube, x, y, ray->color);
 			y++;
 		}

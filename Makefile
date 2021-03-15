@@ -19,6 +19,7 @@ SOURCES = \
 		./sources/utils/init.c \
 		./sources/texture/texture_init.c \
 		./sources/vector.c \
+		./sources/bitmap.c \
 		./sources/raycasting/raycast.c \
 		./sources/raycasting/raycast_utils.c \
 		./sources/sprite/sprite.c \

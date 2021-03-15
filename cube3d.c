@@ -6,7 +6,7 @@
 /*   By: bclerc <bclerc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/08 11:38:52 by bclerc            #+#    #+#             */
-/*   Updated: 2021/03/15 10:24:21 by bclerc           ###   ########.fr       */
+/*   Updated: 2021/03/15 14:18:12 by bclerc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,7 @@ int main(int argc, char **argv)
 	cube->fd = open(argv[1], O_RDONLY);
 	cube->fd_map = open(argv[1], O_RDONLY);
 	cube->fd_map2 = open(argv[1], O_RDONLY);
-	if (argc != 2)
+	if (argc > 3)
 		return 0;
 	if (fd < 0)
 	{
@@ -110,8 +110,17 @@ int main(int argc, char **argv)
 		register_sprite(cube);
 	cube->mlx = init_mlx(cube);
 	load_texture(cube);
-
-	display(cube);
+	if (argc == 3)
+	{
+		if (ft_strcmp(argv[2], "--save") == 0)
+		{
+			display(cube);
+			to_bmp(cube);
+		}
+		else
+			error_m("Bad arguments");
+		exit(1);
+	}
 	printf("Resolution : %d %d\n",cube->r_x, cube->r_y);
 	mlx_put_image_to_window(cube->mlx->mlx, cube->mlx->win, cube->mlx->img_ptr, 0, 0);
 	mlx_hook(cube->mlx->win, 2, 1L<<0, key_press, cube);
