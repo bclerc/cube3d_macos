@@ -6,7 +6,7 @@
 /*   By: bclerc <bclerc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/08 11:38:52 by bclerc            #+#    #+#             */
-/*   Updated: 2021/03/15 14:18:12 by bclerc           ###   ########.fr       */
+/*   Updated: 2021/03/15 15:27:09 by bclerc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 int key_press(int key, t_cube *cube)
 {
+	if (key == 53)
+		exit(0);
 	if (key == k_down)
 		cube->mlx->down = 1;
 	if (key == k_up)
@@ -121,14 +123,11 @@ int main(int argc, char **argv)
 			error_m("Bad arguments");
 		exit(1);
 	}
-	printf("Resolution : %d %d\n",cube->r_x, cube->r_y);
 	mlx_put_image_to_window(cube->mlx->mlx, cube->mlx->win, cube->mlx->img_ptr, 0, 0);
 	mlx_hook(cube->mlx->win, 2, 1L<<0, key_press, cube);
 	mlx_hook(cube->mlx->win, 3, 1L<<1, key_relache, cube);
 	mlx_loop_hook(cube->mlx->mlx, deal_key, cube);
 	mlx_loop(cube->mlx->mlx);
-
-
 
 	kill_m(cube->map);
 	kill_c(cube);
