@@ -6,7 +6,7 @@
 /*   By: bclerc <bclerc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/08 12:50:18 by bclerc            #+#    #+#             */
-/*   Updated: 2021/03/12 16:51:09 by bclerc           ###   ########.fr       */
+/*   Updated: 2021/03/15 10:37:20 by bclerc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,13 +45,12 @@ int	param_path(char *line, char **path)
 int	param_r(t_cube *cube, char *line)
 {
 	int i;
-
 	i = 0;
 	while (line[i] == 'R' || line[i] == ' ')
 		i++;
 	while (ft_isdigit(line[i]))
 	{
-		cube->R_X = (cube->R_X * 10) + (line[i] - '0');
+		cube->r_x = (cube->r_x * 10) + (line[i] - '0');
 		i++;
 	}
 	if (line[i] == ' ')
@@ -59,13 +58,11 @@ int	param_r(t_cube *cube, char *line)
 		i++;
 		while (ft_isdigit(line[i]))
 		{
-			cube->R_Y = (cube->R_Y * 10) + (line[i] - '0');
+			cube->r_y = (cube->r_y * 10) + (line[i] - '0');
 			i++;
 		}
 	}
 	else
-	{
 		return (0);
-	}
 	return (1);
 }

@@ -6,7 +6,7 @@
 /*   By: bclerc <bclerc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/04 12:50:41 by bclerc            #+#    #+#             */
-/*   Updated: 2021/03/12 15:47:42 by bclerc           ###   ########.fr       */
+/*   Updated: 2021/03/15 10:31:42 by bclerc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,22 +21,22 @@ void	calc_sprite(t_cube *cube, t_sprite_s *s, int i)
 		(cube->diry * s->spritex - cube->dirx * s->spritey);
 	s->transformy = s->invdet *
 		(-cube->planey * s->spritex + cube->planex * s->spritey);
-	s->screenx = (int)((width / 2) * (1 + s->transformx / s->transformy));
+	s->screenx = (int)((cube->r_x / 2) * (1 + s->transformx / s->transformy));
 	s->vmscreen = (int)(0.0 / s->transformy);
-	s->sheight = abs((int)(heigth / (s->transformy))) / 1;
-	s->drawstarty = -s->sheight / 2 + heigth / 2 + s->vmscreen;
+	s->sheight = abs((int)(cube->r_y / (s->transformy))) / 1;
+	s->drawstarty = -s->sheight / 2 + cube->r_y / 2 + s->vmscreen;
 	if (s->drawstarty < 0)
 		s->drawstarty = 0;
-	s->drawendy = s->sheight / 2 + heigth / 2 + s->vmscreen;
-	if (s->drawendy >= heigth)
-		s->drawendy = heigth - 1;
-	s->swidth = abs((int)(heigth / (s->transformy))) / 1;
+	s->drawendy = s->sheight / 2 + cube->r_y / 2 + s->vmscreen;
+	if (s->drawendy >= cube->r_y)
+		s->drawendy = cube->r_y - 1;
+	s->swidth = abs((int)(cube->r_y / (s->transformy))) / 1;
 	s->drawstartx = -s->swidth / 2 + s->screenx;
 	if (s->drawstartx < 0)
 		s->drawstartx = 0;
 	s->drawendx = s->swidth / 2 + s->screenx;
-	if (s->drawendx >= width)
-		s->drawendx = width - 1;
+	if (s->drawendx >= cube->r_x)
+		s->drawendx = cube->r_x - 1;
 }
 
 void	print_sprite(t_cube *cube, t_sprite_s *s, t_raycast *ray, int x)
@@ -46,19 +46,19 @@ void	print_sprite(t_cube *cube, t_sprite_s *s, t_raycast *ray, int x)
 
 	s->texx = (int)(256 * (x - (-s->swidth / 2 + s->screenx))
 	* 64 / s->swidth) / 256;
-	if (s->transformy > 0 && x >= 0 && x < width
+	if (s->transformy > 0 && x >= 0 && x < cube->r_x
 		&& s->transformy < ray->pwalldist)
 	{
 		y = s->drawstarty;
 		while (y < s->drawendy)
 		{
-			d = (y - s->vmscreen) * 256 - heigth * 128 + s->sheight * 128;
+			d = (y - s->vmscreen) * 256 - cube->r_y * 128 + s->sheight * 128;
 			s->texy = ((d * 64) / s->sheight) / 256;
 			ray->color = *(int*)&cube->texture[4]
 			->imgdat[(s->texy * (cube->texture[4]->size_line)
 			+ s->texx * (cube->texture[4]->bpp / 8))];
 			if (ray->color != 0)
-				pixel_put(cube->mlx, x, y, ray->color);
+				pixel_put(cube, x, y, ray->color);
 			y++;
 		}
 	}

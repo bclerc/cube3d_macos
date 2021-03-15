@@ -6,7 +6,7 @@
 /*   By: bclerc <bclerc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/08 11:38:52 by bclerc            #+#    #+#             */
-/*   Updated: 2021/03/12 16:28:55 by bclerc           ###   ########.fr       */
+/*   Updated: 2021/03/15 10:24:21 by bclerc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,8 @@ int key_relache(int key, t_cube *cube)
 
 void clean_param(t_cube *cube)
 {
-	cube->R_X = 0;
-	cube->R_Y = 0;	
+	cube->r_x = 0;
+	cube->r_y = 0;	
 }
 
 void kill_m(t_map *map)
@@ -80,11 +80,6 @@ int	deal_key(t_cube *cube)
 		turn_right(cube);
 	display(cube);
 	mlx_put_image_to_window(cube->mlx->mlx, cube->mlx->win, cube->mlx->img_ptr, 0, 0);
-	mlx_string_put(cube->mlx->mlx, cube->mlx->win, 0, 5, 0xFF00FF, "X: ");
-	mlx_string_put(cube->mlx->mlx, cube->mlx->win, 20, 5, 0xFF00FF, ft_itoa((int)cube->player->x));
-	mlx_string_put(cube->mlx->mlx, cube->mlx->win, 0, 25, 0xFF00FF, "Y: ");	
-	mlx_string_put(cube->mlx->mlx, cube->mlx->win, 20, 25, 0xFF00FF, ft_itoa((int)cube->player->y));
-	printf("%c | %.3f %.3f < direction > %.3f %.3f \n", cube->map->coord[(int)cube->player->y][(int)cube->player->x] ,cube->dirx, cube->diry, cube->planex, cube->planey);
 	return (1);
 }
 
@@ -96,7 +91,6 @@ int main(int argc, char **argv)
 
 	texture = (t_texture*)malloc(sizeof(t_texture));
 	cube = init_cube_s();
-	printf("%f %f >>>", cube->player->y, cube->player->x);
 	cube->file_name = argv[1];
 	cube->fd = open(argv[1], O_RDONLY);
 	cube->fd_map = open(argv[1], O_RDONLY);
@@ -113,18 +107,12 @@ int main(int argc, char **argv)
 	parse_map(cube);
 	check_map(cube);
 	if (cube->n_sprite > 0)
-	{
 		register_sprite(cube);
-		printf("Sprite position %d %d \n", cube->sprite[0].x, cube->sprite[0].y);
-	}
-	printf("X: %d, Y: %d\nNO: %s\nSO %s\nWE %s\nEA %s\nS %s", cube->R_X, cube->R_Y, cube->NO, cube->SO, cube->WE, cube->EA, cube->SPRITE);
-	printf("\nF %d, %d, %d\nC %d, %d, %d\n", cube->G_COLOR.r, cube->G_COLOR.g, cube->G_COLOR.b, cube->R_COLOR.r, cube->R_COLOR.g, cube->R_COLOR.b);
-	printf("\n Posx: %f, posy: %f, Max x: %d, Max y: %d\n",cube->player->x, cube->player->y, cube->map->max_x, cube->map->max_y);	
-	printf("\nNombres de sprite : %d\n", cube->n_sprite);
-	cube->mlx = init_mlx();
+	cube->mlx = init_mlx(cube);
 	load_texture(cube);
 
 	display(cube);
+	printf("Resolution : %d %d\n",cube->r_x, cube->r_y);
 	mlx_put_image_to_window(cube->mlx->mlx, cube->mlx->win, cube->mlx->img_ptr, 0, 0);
 	mlx_hook(cube->mlx->win, 2, 1L<<0, key_press, cube);
 	mlx_hook(cube->mlx->win, 3, 1L<<1, key_relache, cube);

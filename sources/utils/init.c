@@ -6,13 +6,13 @@
 /*   By: bclerc <bclerc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/18 14:19:44 by bclerc            #+#    #+#             */
-/*   Updated: 2021/03/12 16:42:43 by bclerc           ###   ########.fr       */
+/*   Updated: 2021/03/15 10:23:27 by bclerc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cube3d.h"
 
-t_mlx		*init_mlx(void)
+t_mlx		*init_mlx(t_cube *cube)
 {
 	t_mlx	*mlx;
 	int		bpp;
@@ -22,8 +22,8 @@ t_mlx		*init_mlx(void)
 	if (!(mlx = (t_mlx*)malloc(sizeof(t_mlx))))
 		return (0);
 	mlx->mlx = mlx_init();
-	mlx->win = mlx_new_window(mlx->mlx, width, heigth, "Cube3d");
-	mlx->img_ptr = mlx_new_image(mlx->mlx, width, heigth);
+	mlx->win = mlx_new_window(mlx->mlx, cube->r_x,  cube->r_y, "Cube3d");
+	mlx->img_ptr = mlx_new_image(mlx->mlx, cube->r_x, cube->r_y);
 	mlx->img_data = mlx_get_data_addr(mlx->img_ptr, &bpp, &size_line, &endian);
 	mlx->endian = endian;
 	mlx->size_line = size_line;
@@ -68,6 +68,8 @@ t_cube		*init_cube_s(void)
 	cube->player = init_player();
 	cube->map = init_map();
 	cube->texture = init_texture();
+	cube->r_x = 0;
+	cube->r_y = 0;
 	cube->n_sprite = 0;
 	return (cube);
 }

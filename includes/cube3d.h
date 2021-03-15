@@ -6,7 +6,7 @@
 /*   By: bclerc <bclerc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/08 11:35:47 by bclerc            #+#    #+#             */
-/*   Updated: 2021/03/12 16:30:07 by bclerc           ###   ########.fr       */
+/*   Updated: 2021/03/15 10:27:45 by bclerc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,6 @@
 # include "minilibx/mlx.h"
 # include <stdio.h>
 # include <math.h>
-# define heigth 800
-# define width	1200
 # define k_up  126
 # define k_down 125
 # define k_left 123
@@ -163,8 +161,8 @@ typedef	struct	s_cube
 	int fd;
 	int fd_map;
 	int fd_map2;
-	int R_X;
-	int	R_Y;
+	int r_x;
+	int	r_y;
 	int	n_sprite;
 	int x;
 	t_sprite  *sprite;
@@ -201,8 +199,8 @@ void	error_m(char *msg);
 void	map_error_m(t_map *map, int x, int y, char *msg);
 void	display(t_cube *cube);
 int		is_player(t_cube *cube, char c, int x, int y);
-void	verline(t_mlx *mlx, int x, int y1, int y2, int color);
-void	pixel_put(t_mlx *mlx, int x, int y, int color);
+void	verline(t_cube *cube, int x, int y1, int y2, int color);
+void	pixel_put(t_cube *cube, int x, int y, int color);
 void	clear(t_mlx *mlx, int color);
 int		first_read(t_cube *cube);
 int		param_r(t_cube *cube, char *line);
@@ -213,7 +211,7 @@ int		param_path(char *line, char **path);
 int		init_cube(t_cube *cube);
 int		check_map(t_cube *cube);
 t_cube  *init_cube_s();
-t_mlx	*init_mlx();
+t_mlx	*init_mlx(t_cube *cube);
 t_map	*init_map();
 t_player *init_player();
 t_texture **init_texture();

@@ -6,7 +6,7 @@
 /*   By: bclerc <bclerc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/10 14:23:55 by bclerc            #+#    #+#             */
-/*   Updated: 2021/03/01 15:49:23 by bclerc           ###   ########.fr       */
+/*   Updated: 2021/03/15 10:07:22 by bclerc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,8 @@ void error_m(char *msg)
 void tex_error(char *path, char *texture)
 {
 	printf("\nError\n");
-	printf("---------------- Texture \033[0;31m%s\033[0m not found ----------------\n", texture);
+	printf("---------------- Texture \033[0;31m%s"
+		"\033[0m not found ----------------\n", texture);
 	printf("\033[0;31m%s\033[0m\n", path);
 	exit(-1);
 }
@@ -47,7 +48,8 @@ void map_error(t_map *map, int x, int y)
 {
 	printf("\nError\n");
 	printf("---------------- Error surround line ");
-	printf("\033[0;31m%d\033[0m column \033[0;31m%d\033[0m ----------------\n", y + 1, x + 1);
+	printf("\033[0;31m%d\033[0m column \033[0;31m%d"
+			"\033[0m ----------------\n", y + 1, x + 1);
 	print_map(map, x, y);
 	exit(-1);
 }
@@ -56,7 +58,8 @@ void map_error_m(t_map *map, int x, int y, char *msg)
 {
 	printf("\nError\n");
 	printf("---------------- %s ", msg);
-	printf("\033[0;31m%d\033[0m column \033[0;31m%d\033[0m ----------------\n", y + 1, x + 1);
+	printf("\033[0;31m%d\033[0m column \033[0;31m%d"
+		"\033[0m ----------------\n", y + 1, x + 1);
 	print_map(map, x, y);
 	exit(-1);
 }
