@@ -6,7 +6,7 @@
 /*   By: bclerc <bclerc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/09 11:04:18 by bclerc            #+#    #+#             */
-/*   Updated: 2021/03/16 13:55:19 by bclerc           ###   ########.fr       */
+/*   Updated: 2021/03/16 15:02:16 by bclerc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,12 +23,11 @@ void
 	if (!(tmp = (t_sprite*)malloc(sizeof(t_sprite) * cube->n_sprite)))
 		return ;
 	i = 0;
-	x = 0;
-	y = 0;
-	while (cube->map->coord[y])
+	y = -1;
+	while (cube->map->coord[++y])
 	{
-		x = 0;
-		while (cube->map->coord[y][x])
+		x = -1;
+		while (cube->map->coord[y][++x])
 		{
 			if (cube->map->coord[y][x] == '2')
 			{
@@ -38,9 +37,7 @@ void
 				cube->map->coord[y][x] = '0';
 				i++;
 			}
-			x++;
 		}
-		y++;
 	}
 	cube->sprite = tmp;
 }

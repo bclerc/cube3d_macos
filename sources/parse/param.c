@@ -6,7 +6,7 @@
 /*   By: bclerc <bclerc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/08 12:50:18 by bclerc            #+#    #+#             */
-/*   Updated: 2021/03/15 11:06:57 by bclerc           ###   ########.fr       */
+/*   Updated: 2021/03/16 15:00:40 by bclerc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,23 +42,10 @@ int		param_path(char *line, char **path)
 	return (1);
 }
 
-void	check_r(t_cube *cube)
-{
-	int sizex;
-	int sizey;
-
-	//mlx_get_screen_size(cube->mlx, &sizex, &sizey);
-	if (cube->r_x > sizex)
-		printf("RX SUPERIEUR");
-	if (cube->r_y > sizey)
-		printf("Ry SUPERIEUR");		
-	while (1);
-}
-
-
 int		param_r(t_cube *cube, char *line)
 {
 	int i;
+
 	i = 0;
 	while (line[i] == 'R' || line[i] == ' ')
 		i++;

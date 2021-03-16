@@ -6,7 +6,7 @@
 /*   By: bclerc <bclerc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/09 12:04:08 by bclerc            #+#    #+#             */
-/*   Updated: 2021/03/16 14:01:29 by bclerc           ###   ########.fr       */
+/*   Updated: 2021/03/16 15:00:06 by bclerc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,34 +63,7 @@ void		set_player(t_cube *cube, int x, int y, char direction)
 		cube->player->x = (double)x + 0.5;
 		cube->player->y = (double)y + 0.5;
 		cube->player->check = 1;
-		if (direction == 'W')
-		{
-			cube->diry = 0.0;
-			cube->dirx = 1.0;
-			cube->planex = 0.00;
-			cube->planey = -0.66;
-		}
-		if (direction == 'E')
-		{
-			cube->diry = 0.00;
-			cube->dirx = -1.0;
-			cube->planex = 0.00;
-			cube->planey = 0.66;
-		}
-		if (direction == 'S')
-		{
-			cube->diry = 1.0;
-			cube->dirx = 0.0;
-			cube->planex = 0.66;
-			cube->planey = 0.00;
-		}
-		if (direction == 'N')
-		{
-			cube->diry = -1.0;
-			cube->dirx = 0.0;
-			cube->planex = -0.60;
-			cube->planey = 0.00;
-		}
+		set_pos(cube, direction);
 	}
 	else
 		map_error_m(cube->map, x, y, "Duplicate player position");
@@ -98,30 +71,26 @@ void		set_player(t_cube *cube, int x, int y, char direction)
 
 int			check_map(t_cube *cube)
 {
-	char	**coord;
 	int		y;
 	int		x;
 
-	coord = cube->map->coord;
-	y = 0;
-	while (coord[y])
+	y = -1;
+	while (cube->map->coord[++y])
 	{
-		x = 0;
-		while (coord[y][x])
+		x = -1;
+		while (cube->map->coord[y][++x])
 		{
-			if (coord[y][x] != '1' && coord[y][x] != ' '
-				&& coord[y][x] != '\t')
+			if (cube->map->coord[y][x] != '1' && cube->map->coord[y][x] != ' '
+				&& cube->map->coord[y][x] != '\t')
 				check_zero(cube->map, x, y, "NSWE20");
-			if (is_player_loc(coord[y][x]))
+			if (is_player_loc(cube->map->coord[y][x]))
 			{
-				set_player(cube, x, y, coord[y][x]);
-				coord[y][x] = '0';
+				set_player(cube, x, y, cube->map->coord[y][x]);
+				cube->map->coord[y][x] = '0';
 			}
-			if (coord[y][x] == '2')
+			if (cube->map->coord[y][x] == '2')
 				cube->n_sprite++;
-			x++;
 		}
-		y++;
 	}
 	if (cube->player->check != 1)
 		error_m("Player position not set");

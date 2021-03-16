@@ -17,6 +17,7 @@ SOURCES = \
 		./sources/utils/error.c \
 		./sources/utils/touch.c \
 		./sources/utils/init.c \
+		./sources/utils/utils.c \
 		./sources/texture/texture_init.c \
 		./sources/vector.c \
 		./sources/bitmap.c \

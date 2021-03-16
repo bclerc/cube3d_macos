@@ -6,7 +6,7 @@
 /*   By: bclerc <bclerc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/08 11:35:47 by bclerc            #+#    #+#             */
-/*   Updated: 2021/03/16 13:45:39 by bclerc           ###   ########.fr       */
+/*   Updated: 2021/03/16 14:59:07 by bclerc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -219,4 +219,6 @@ t_player *init_player();
 t_texture **init_texture();
 void	load_texture(t_cube *cube);
 void	map_error(t_map *map, int x, int y);
+void	set_pos(t_cube *cube, char direction);
+void	set_direction(t_cube *cube, double dirx, double planex, double planey);
 #endif
