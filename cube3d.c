@@ -6,7 +6,7 @@
 /*   By: bclerc <bclerc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/08 11:38:52 by bclerc            #+#    #+#             */
-/*   Updated: 2021/03/15 16:46:40 by bclerc           ###   ########.fr       */
+/*   Updated: 2021/03/16 15:43:32 by bclerc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,6 @@ void kill_c(t_cube *cube)
 
 int	deal_key(t_cube *cube)
 {	
-	//printf("Player x, y : %f %f, max x, y : %d %d \n",cube->player->x, cube->player->y, *cube->map->max_y, *cube->map->max_x);
 	if (cube->mlx->up == 1)
 		move_up(cube);
 	if (cube->mlx->down == 1)
@@ -128,7 +127,6 @@ int main(int argc, char **argv)
 	mlx_hook(cube->mlx->win, 3, 1L<<1, key_relache, cube);
 	mlx_loop_hook(cube->mlx->mlx, deal_key, cube);
 	mlx_loop(cube->mlx->mlx);
-	system("leaks cube3d");
 	kill_m(cube->map);
 	kill_c(cube);
 }
