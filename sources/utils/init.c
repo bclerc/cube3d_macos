@@ -6,7 +6,7 @@
 /*   By: bclerc <bclerc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/18 14:19:44 by bclerc            #+#    #+#             */
-/*   Updated: 2021/03/15 10:23:27 by bclerc           ###   ########.fr       */
+/*   Updated: 2021/03/16 15:05:56 by bclerc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ t_mlx		*init_mlx(t_cube *cube)
 	if (!(mlx = (t_mlx*)malloc(sizeof(t_mlx))))
 		return (0);
 	mlx->mlx = mlx_init();
-	mlx->win = mlx_new_window(mlx->mlx, cube->r_x,  cube->r_y, "Cube3d");
+	mlx->win = mlx_new_window(mlx->mlx, cube->r_x, cube->r_y, "Cube3d");
 	mlx->img_ptr = mlx_new_image(mlx->mlx, cube->r_x, cube->r_y);
 	mlx->img_data = mlx_get_data_addr(mlx->img_ptr, &bpp, &size_line, &endian);
 	mlx->endian = endian;

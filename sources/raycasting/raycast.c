@@ -6,7 +6,7 @@
 /*   By: bclerc <bclerc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/22 10:45:49 by bclerc            #+#    #+#             */
-/*   Updated: 2021/03/15 16:01:34 by bclerc           ###   ########.fr       */
+/*   Updated: 2021/03/16 15:07:56 by bclerc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,10 +98,12 @@ void		display(t_cube *cube)
 		s_dda(&ray, cube);
 		calc_draw(cube, &ray);
 		draw_pixel(x, &ray, cube);
-		verline(cube, x, 0, ray.drawstart, *(int*)&cube->R_COLOR);
-		verline(cube, x, ray.drawend, cube->r_y, *(int*)&cube->G_COLOR);
-		cube->x = x;
 		cube->cast = &ray;
+		ray.color = *(int*)&cube->R_COLOR;
+		verline(cube, x, 0, ray.drawstart);
+		ray.color = *(int*)&cube->G_COLOR;
+		verline(cube, x, ray.drawend, cube->r_y);
+		cube->x = x;
 		drawsprite(cube, &ray);
 		x += 2;
 	}

@@ -6,7 +6,7 @@
 /*   By: bclerc <bclerc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/15 12:47:39 by bclerc            #+#    #+#             */
-/*   Updated: 2021/03/15 10:27:48 by bclerc           ###   ########.fr       */
+/*   Updated: 2021/03/16 15:04:17 by bclerc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 void	pixel_put(t_cube *cube, int x, int y, int color)
 {
-	char *dst;
-	t_mlx *mlx;
+	char	*dst;
+	t_mlx	*mlx;
 
 	mlx = cube->mlx;
 	dst = mlx->img_data + (y * mlx->size_line + x * (mlx->bpp / 8));
@@ -23,8 +23,8 @@ void	pixel_put(t_cube *cube, int x, int y, int color)
 		*(unsigned int*)dst = color;
 }
 
-void	verline(t_cube *cube, int x, int y1, int y2, int color)
+void	verline(t_cube *cube, int x, int y1, int y2)
 {
 	while (y1 < y2)
-		pixel_put(cube, x, y1++, color);
+		pixel_put(cube, x, y1++, cube->cast->color);
 }

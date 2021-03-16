@@ -6,13 +6,13 @@
 /*   By: bclerc <bclerc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/10 14:23:55 by bclerc            #+#    #+#             */
-/*   Updated: 2021/03/15 14:07:01 by bclerc           ###   ########.fr       */
+/*   Updated: 2021/03/16 15:05:42 by bclerc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "../../includes/cube3d.h"
+#include "../../includes/cube3d.h"
 
-void print_map(t_map *map, int x, int y)
+void	print_map(t_map *map, int x, int y)
 {
 	int w;
 
@@ -28,14 +28,14 @@ void print_map(t_map *map, int x, int y)
 	printf("\n");
 }
 
-void error_m(char *msg)
+void	error_m(char *msg)
 {
 	printf("\nError\n");
 	printf("\033[0;31m%s\033[0m\n", msg);
 	exit(-1);
 }
 
-void tex_error(char *path, char *texture)
+void	tex_error(char *path, char *texture)
 {
 	printf("\nError\n");
 	printf("---------------- Texture \033[0;31m%s"
@@ -44,7 +44,7 @@ void tex_error(char *path, char *texture)
 	exit(-1);
 }
 
-void map_error(t_map *map, int x, int y)
+void	map_error(t_map *map, int x, int y)
 {
 	printf("\nError\n");
 	printf("---------------- Error surround line ");
@@ -54,7 +54,7 @@ void map_error(t_map *map, int x, int y)
 	exit(-1);
 }
 
-void map_error_m(t_map *map, int x, int y, char *msg)
+void	map_error_m(t_map *map, int x, int y, char *msg)
 {
 	printf("\nError\n");
 	printf("---------------- %s ", msg);

@@ -6,7 +6,7 @@
 /*   By: bclerc <bclerc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/08 11:35:47 by bclerc            #+#    #+#             */
-/*   Updated: 2021/03/16 14:59:07 by bclerc           ###   ########.fr       */
+/*   Updated: 2021/03/16 15:04:17 by bclerc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -201,7 +201,7 @@ void	error_m(char *msg);
 void	map_error_m(t_map *map, int x, int y, char *msg);
 void	display(t_cube *cube);
 int		is_player(t_cube *cube, char c, int x, int y);
-void	verline(t_cube *cube, int x, int y1, int y2, int color);
+void	verline(t_cube *cube, int x, int y1, int y2);
 void	pixel_put(t_cube *cube, int x, int y, int color);
 void	clear(t_mlx *mlx, int color);
 int		first_read(t_cube *cube);
