@@ -6,7 +6,7 @@
 /*   By: bclerc <bclerc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/09 12:04:08 by bclerc            #+#    #+#             */
-/*   Updated: 2021/03/12 16:51:13 by bclerc           ###   ########.fr       */
+/*   Updated: 2021/03/16 14:01:29 by bclerc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ void		set_player(t_cube *cube, int x, int y, char direction)
 {
 	if (cube->player->check != 1)
 	{
-		cube->player->x = (double)x + 0;
+		cube->player->x = (double)x + 0.5;
 		cube->player->y = (double)y + 0.5;
 		cube->player->check = 1;
 		if (direction == 'W')
