@@ -6,7 +6,7 @@
 /*   By: bclerc <bclerc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/09 11:04:18 by bclerc            #+#    #+#             */
-/*   Updated: 2021/03/15 16:10:12 by bclerc           ###   ########.fr       */
+/*   Updated: 2021/03/16 13:43:47 by bclerc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,8 @@ void
 		{
 			if (cube->map->coord[y][x] == '2')
 			{
-				tmp[i].x = x + 0.5;
-				tmp[i].y = y + 0.5;
+				tmp[i].x = (double)x + 0.5;
+				tmp[i].y = (double)y + 0.5;
 				tmp[i].dist = 0;
 				cube->map->coord[y][x] = '0';
 				i++;

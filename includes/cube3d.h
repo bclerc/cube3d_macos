@@ -6,7 +6,7 @@
 /*   By: bclerc <bclerc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/08 11:35:47 by bclerc            #+#    #+#             */
-/*   Updated: 2021/03/15 11:53:39 by bclerc           ###   ########.fr       */
+/*   Updated: 2021/03/16 13:39:23 by bclerc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,8 @@
 
 typedef struct	s_sprite
 {
-	int x;
-	int y;
+	double x;
+	double y;
 	int dist;
 }				t_sprite;
 
@@ -181,6 +181,7 @@ typedef	struct	s_cube
 	char *file_name;
 
 }				t_cube;
+
 
 t_texture	*get_direction(t_cube *cube, t_raycast *ray);
 void	to_bmp(t_cube *cube);

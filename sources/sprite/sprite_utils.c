@@ -6,7 +6,7 @@
 /*   By: bclerc <bclerc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/12 14:28:48 by bclerc            #+#    #+#             */
-/*   Updated: 2021/03/15 10:24:02 by bclerc           ###   ########.fr       */
+/*   Updated: 2021/03/16 13:42:51 by bclerc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,8 @@ void	sortsprite(t_cube *cube, int sx, int sy)
 	{
 		sprite = &cube->sprite[i];
 		sprite2 = &cube->sprite[i + 1];
-		if (calc_dist(cube, sprite->x, sprite->y) >
-			calc_dist(cube, sprite2->x, sprite2->y))
+		if (calc_dist(cube, (int)sprite->x, (int)sprite->y) >
+			calc_dist(cube, (int)sprite2->x, (int)sprite2->y))
 		{
 			tmp = cube->sprite[i];
 			cube->sprite[i] = cube->sprite[i + 1];
