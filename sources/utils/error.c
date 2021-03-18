@@ -6,7 +6,7 @@
 /*   By: bclerc <bclerc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/10 14:23:55 by bclerc            #+#    #+#             */
-/*   Updated: 2021/03/16 15:05:42 by bclerc           ###   ########.fr       */
+/*   Updated: 2021/03/18 13:55:16 by bclerc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	print_map(t_map *map, int x, int y)
 
 void	error_m(char *msg)
 {
-	printf("\nError\n");
+	printf("Error\n");
 	printf("\033[0;31m%s\033[0m\n", msg);
 	exit(-1);
 }

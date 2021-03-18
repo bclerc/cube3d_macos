@@ -6,7 +6,7 @@
 /*   By: bclerc <bclerc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/24 12:14:03 by bclerc            #+#    #+#             */
-/*   Updated: 2021/03/15 16:48:48 by bclerc           ###   ########.fr       */
+/*   Updated: 2021/03/18 13:59:21 by bclerc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void		check_texture(t_cube *cube)
 	if (!tex[3]->imgptr)
 		tex_error(cube->EA, "EA");
 	if (!tex[4]->imgptr)
-		tex_error(cube->EA, "Sprite");
+		tex_error(cube->SPRITE, "Sprite");
 }
 
 t_texture	**init_texture(void)
