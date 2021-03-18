@@ -6,7 +6,7 @@
 /*   By: bclerc <bclerc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/18 13:41:22 by bclerc            #+#    #+#             */
-/*   Updated: 2021/03/18 14:50:22 by bclerc           ###   ########.fr       */
+/*   Updated: 2021/03/18 15:03:43 by bclerc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,26 +24,26 @@ int			key_press(int key, t_cube *cube)
 {
 	if (key == 53)
 		exit(0);
-	if (key == k_down)
+	if (key == K_DOWN)
 		cube->mlx->down = 1;
-	if (key == k_up)
+	if (key == K_UP)
 		cube->mlx->up = 1;
-	if (key == k_left)
+	if (key == K_LEFT)
 		cube->mlx->left = 1;
-	if (key == k_right)
+	if (key == K_RIGHT)
 		cube->mlx->right = 1;
 	return (1);
 }
 
 int			key_relache(int key, t_cube *cube)
 {
-	if (key == k_down)
+	if (key == K_DOWN)
 		cube->mlx->down = 0;
-	if (key == k_up)
+	if (key == K_UP)
 		cube->mlx->up = 0;
-	if (key == k_left)
+	if (key == K_LEFT)
 		cube->mlx->left = 0;
-	if (key == k_right)
+	if (key == K_RIGHT)
 		cube->mlx->right = 0;
 	return (1);
 }

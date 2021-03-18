@@ -6,7 +6,7 @@
 /*   By: bclerc <bclerc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/12 15:48:30 by bclerc            #+#    #+#             */
-/*   Updated: 2021/03/15 10:28:57 by bclerc           ###   ########.fr       */
+/*   Updated: 2021/03/18 15:05:09 by bclerc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	calc_draw(t_cube *cube, t_raycast *ray)
 		ray->drawend = cube->r_y - 1;
 	ray->texture = get_direction(cube, ray);
 	ray->step = 1.0 * 64 / ray->lineheight;
-	ray->texPos = (ray->drawstart - cube->r_y / 2 + ray->lineheight / 2)
+	ray->texpos = (ray->drawstart - cube->r_y / 2 + ray->lineheight / 2)
 		* ray->step;
 }
 
@@ -41,8 +41,8 @@ void	draw_pixel(int x, t_raycast *ray, t_cube *cube)
 	while (y < ray->drawend)
 	{
 		ray->y = y;
-		ray->texy = (int)ray->texPos & (64 - 1);
-		ray->texPos += ray->step;
+		ray->texy = (int)ray->texpos & (64 - 1);
+		ray->texpos += ray->step;
 		ray->color = *(int*)&ray->texture->imgdat[(ray->texy
 		* (ray->texture->size_line)
 		+ ray->texx * (ray->texture->bpp / 8))];

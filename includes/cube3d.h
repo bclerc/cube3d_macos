@@ -6,25 +6,25 @@
 /*   By: bclerc <bclerc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/08 11:35:47 by bclerc            #+#    #+#             */
-/*   Updated: 2021/03/18 14:20:30 by bclerc           ###   ########.fr       */
+/*   Updated: 2021/03/18 15:07:16 by bclerc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUBE3D_H
 # define CUBE3D_H
 
+# define K_UP  126
+# define K_DOWN 125
+# define K_LEFT 123
+# define K_RIGHT 124
+# define ROTSPEED 0.06
+# define MOVESPEED 0.30
 # include "libft/libft.h"
 # include <pthread.h>
 # include "gnl/get_next_line.h"
 # include "minilibx/mlx.h"
 # include <stdio.h>
 # include <math.h>
-# define k_up  126
-# define k_down 125
-# define k_left 123
-# define k_right 124
-# define rotspeed 0.06 
-# define movespeed 0.30
 
 typedef struct	s_sprite
 {
@@ -33,7 +33,7 @@ typedef struct	s_sprite
 	int		dist;
 }				t_sprite;
 
-typedef struct s_texture
+typedef struct	s_texture
 {
 	void	*imgptr;
 	void	*imgdat;
@@ -79,7 +79,7 @@ typedef struct	s_raycast
 	double		pwalldist;
 	double		wallx;
 	double		step;
-	double		texPos;
+	double		texpos;
 	int			texx;
 	int			lineheight;
 	int			texy;
@@ -118,10 +118,9 @@ typedef struct	s_mlx
 	int		left;
 	int		right;
 	int		l;
-}				t_mlx;	
+}				t_mlx;
 
-
-typedef struct s_color
+typedef struct	s_color
 {
 	unsigned char b;
 	unsigned char g;
@@ -147,9 +146,8 @@ typedef	struct	s_map
 	char	**coord;
 }				t_map;
 
-/// cast int t_color
 typedef	struct	s_cube
-{	
+{
 	double		dirx;
 	double		diry;
 	double		planey;
@@ -165,22 +163,21 @@ typedef	struct	s_cube
 	t_raycast	*cast;
 	t_texture	**texture;
 	t_mlx		*mlx;
-	t_color		G_COLOR;
-	t_color		R_COLOR;
+	t_color		g_color;
+	t_color		r_color;
 	t_map		*map;
 	t_player	*player;
-	char		*NO;
-	char		*SO;
-	char		*WE;
-	char		*EA;
-	char		*SPRITE;
+	char		*no;
+	char		*so;
+	char		*we;
+	char		*ea;
+	char		*sprite_p;
 	char		*file_name;
 }				t_cube;
 
-
 t_texture			*get_direction(t_cube *cube, t_raycast *ray);
 void				to_bmp(t_cube *cube);
-void				calc_draw(t_cube* cube, t_raycast *ray);
+void				calc_draw(t_cube *cube, t_raycast *ray);
 void				init_ray(int x, t_raycast *ray, t_cube *cube);
 void				draw_pixel(int x, t_raycast *ray, t_cube *cube);
 void				sortsprite(t_cube *cube, int sx, int sy);
@@ -207,7 +204,7 @@ int					def_path(t_cube *cube, char *line);
 int					param_path(char *line, char **path);
 int					init_cube(t_cube *cube);
 int					check_map(t_cube *cube);
-t_cube 				*init_cube_s();
+t_cube				*init_cube_s();
 t_mlx				*init_mlx(t_cube *cube);
 t_map				*init_map();
 t_player			*init_player();
@@ -215,7 +212,8 @@ t_texture			**init_texture();
 void				load_texture(t_cube *cube);
 void				map_error(t_map *map, int x, int y);
 void				set_pos(t_cube *cube, char direction);
-void				set_direction(t_cube *cube, double dirx, double planex, double planey);
+void				set_direction(t_cube *cube, double dirx,
+									double planex, double planey);
 int					key_press(int key, t_cube *cube);
 int					key_relache(int key, t_cube *cube);
 int					deal_key(t_cube *cube);

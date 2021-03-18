@@ -6,7 +6,7 @@
 /*   By: bclerc <bclerc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/12 15:50:28 by bclerc            #+#    #+#             */
-/*   Updated: 2021/03/12 16:37:25 by bclerc           ###   ########.fr       */
+/*   Updated: 2021/03/18 15:04:17 by bclerc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,21 +15,21 @@
 void	move_up(t_cube *cube)
 {
 	if (cube->map->coord[(int)cube->player->y]
-		[(int)(cube->player->x + cube->dirx * movespeed)] - '0' == 0)
-		cube->player->x += cube->dirx * movespeed;
-	if (cube->map->coord[(int)(cube->player->y + cube->diry * movespeed)]
+		[(int)(cube->player->x + cube->dirx * MOVESPEED)] - '0' == 0)
+		cube->player->x += cube->dirx * MOVESPEED;
+	if (cube->map->coord[(int)(cube->player->y + cube->diry * MOVESPEED)]
 		[(int)cube->player->x] - '0' == 0)
-		cube->player->y += cube->diry * movespeed;
+		cube->player->y += cube->diry * MOVESPEED;
 }
 
 void	move_back(t_cube *cube)
 {
 	if (cube->map->coord[(int)cube->player->y]
-		[(int)(cube->player->x - cube->dirx * movespeed)] - '0' == 0)
-		cube->player->x -= cube->dirx * movespeed;
-	if (cube->map->coord[(int)(cube->player->y - cube->diry * movespeed)]
+		[(int)(cube->player->x - cube->dirx * MOVESPEED)] - '0' == 0)
+		cube->player->x -= cube->dirx * MOVESPEED;
+	if (cube->map->coord[(int)(cube->player->y - cube->diry * MOVESPEED)]
 		[(int)cube->player->x] - '0' == 0)
-		cube->player->y -= cube->diry * movespeed;
+		cube->player->y -= cube->diry * MOVESPEED;
 }
 
 void	turn_left(t_cube *cube)
@@ -38,12 +38,12 @@ void	turn_left(t_cube *cube)
 	double oldplanex;
 
 	olddirx = cube->dirx;
-	cube->dirx = cube->dirx * cos(rotspeed) - cube->diry * sin(rotspeed);
-	cube->diry = olddirx * sin(rotspeed) + cube->diry * cos(rotspeed);
+	cube->dirx = cube->dirx * cos(ROTSPEED) - cube->diry * sin(ROTSPEED);
+	cube->diry = olddirx * sin(ROTSPEED) + cube->diry * cos(ROTSPEED);
 	oldplanex = cube->planex;
-	cube->planex = cube->planex * cos(rotspeed)
-		- cube->planey * sin(rotspeed);
-	cube->planey = oldplanex * sin(rotspeed) + cube->planey * cos(rotspeed);
+	cube->planex = cube->planex * cos(ROTSPEED)
+		- cube->planey * sin(ROTSPEED);
+	cube->planey = oldplanex * sin(ROTSPEED) + cube->planey * cos(ROTSPEED);
 }
 
 void	turn_right(t_cube *cube)
@@ -52,10 +52,10 @@ void	turn_right(t_cube *cube)
 	double oldplanex;
 
 	olddirx = cube->dirx;
-	cube->dirx = cube->dirx * cos(-rotspeed) - cube->diry * sin(-rotspeed);
-	cube->diry = olddirx * sin(-rotspeed) + cube->diry * cos(-rotspeed);
+	cube->dirx = cube->dirx * cos(-ROTSPEED) - cube->diry * sin(-ROTSPEED);
+	cube->diry = olddirx * sin(-ROTSPEED) + cube->diry * cos(-ROTSPEED);
 	oldplanex = cube->planex;
-	cube->planex = cube->planex * cos(-rotspeed)
-		- cube->planey * sin(-rotspeed);
-	cube->planey = oldplanex * sin(-rotspeed) + cube->planey * cos(-rotspeed);
+	cube->planex = cube->planex * cos(-ROTSPEED)
+		- cube->planey * sin(-ROTSPEED);
+	cube->planey = oldplanex * sin(-ROTSPEED) + cube->planey * cos(-ROTSPEED);
 }
