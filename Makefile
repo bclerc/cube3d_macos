@@ -1,5 +1,5 @@
-NAME = cube3d
-PROJECT_NAME = cube3d
+NAME = cub3d
+PROJECT_NAME = cub3d
 
 SOURCES_FOLDER = ./
 INCLUDES_FOLDER = includes/libft

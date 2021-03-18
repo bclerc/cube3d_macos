@@ -6,7 +6,7 @@
 /*   By: bclerc <bclerc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/08 11:38:52 by bclerc            #+#    #+#             */
-/*   Updated: 2021/03/18 14:11:50 by bclerc           ###   ########.fr       */
+/*   Updated: 2021/03/18 14:50:17 by bclerc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,8 +71,9 @@ int
 	texture = (t_texture*)malloc(sizeof(t_texture));
 	cube = init_cube_s();
 	cube->file_name = argv[1];
-	if (argc > 3)
-		error_m("To many arguments");
+	if (argc > 3 || argc < 2)
+		error_m(argc > 3 ? "To many arguments"
+			: "Not enough arguments");
 	load_fd(cube, argv[1]);
 	init_cube(cube);
 	first_read(cube);
