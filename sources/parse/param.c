@@ -6,7 +6,7 @@
 /*   By: bclerc <bclerc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/08 12:50:18 by bclerc            #+#    #+#             */
-/*   Updated: 2021/03/16 15:00:40 by bclerc           ###   ########.fr       */
+/*   Updated: 2021/03/18 19:50:18 by bclerc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,15 +19,15 @@ int		def_path(t_cube *cube, char *line)
 
 	i = 0;
 	if (line[i] == 'N' && line[i + 1] == 'O')
-		param_path(&line[i + 2], &cube->NO);
+		param_path(&line[i + 2], &cube->no);
 	if (line[i] == 'S' && line[i + 1] == 'O')
-		param_path(&line[i + 2], &cube->SO);
+		param_path(&line[i + 2], &cube->so);
 	if (line[i] == 'W' && line[i + 1] == 'E')
-		param_path(&line[i + 2], &cube->WE);
+		param_path(&line[i + 2], &cube->we);
 	if (line[i] == 'E' && line[i + 1] == 'A')
-		param_path(&line[i + 2], &cube->EA);
+		param_path(&line[i + 2], &cube->ea);
 	if (line[i] == 'S' && line[i + 1] == ' ')
-		param_path(&line[i + 1], &cube->SPRITE);
+		param_path(&line[i + 1], &cube->sprite_p);
 	return (1);
 }
 

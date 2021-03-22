@@ -6,7 +6,7 @@
 /*   By: bclerc <bclerc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/24 12:14:03 by bclerc            #+#    #+#             */
-/*   Updated: 2021/03/18 13:59:21 by bclerc           ###   ########.fr       */
+/*   Updated: 2021/03/18 19:47:03 by bclerc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,15 +22,15 @@ void		check_texture(t_cube *cube)
 
 	tex = cube->texture;
 	if (!tex[0]->imgptr)
-		tex_error(cube->SO, "SO");
+		tex_error(cube->so, "SO");
 	if (!tex[1]->imgptr)
-		tex_error(cube->NO, "NO");
+		tex_error(cube->no, "NO");
 	if (!tex[2]->imgptr)
-		tex_error(cube->WE, "WE");
+		tex_error(cube->we, "WE");
 	if (!tex[3]->imgptr)
-		tex_error(cube->EA, "EA");
+		tex_error(cube->ea, "EA");
 	if (!tex[4]->imgptr)
-		tex_error(cube->SPRITE, "Sprite");
+		tex_error(cube->sprite_p, "Sprite");
 }
 
 t_texture	**init_texture(void)
@@ -72,15 +72,15 @@ void		load_texture(t_cube *cube)
 	t_texture **tex;
 
 	tex = cube->texture;
-	tex[0]->imgptr = mlx_xpm_file_to_image(cube->mlx->mlx, cube->SO,
+	tex[0]->imgptr = mlx_xpm_file_to_image(cube->mlx->mlx, cube->so,
 		&tex[0]->w, &tex[0]->h);
-	tex[1]->imgptr = mlx_xpm_file_to_image(cube->mlx->mlx, cube->NO,
+	tex[1]->imgptr = mlx_xpm_file_to_image(cube->mlx->mlx, cube->no,
 		&tex[1]->w, &tex[1]->h);
-	tex[2]->imgptr = mlx_xpm_file_to_image(cube->mlx->mlx, cube->WE,
+	tex[2]->imgptr = mlx_xpm_file_to_image(cube->mlx->mlx, cube->we,
 		&tex[2]->w, &tex[2]->h);
-	tex[3]->imgptr = mlx_xpm_file_to_image(cube->mlx->mlx, cube->EA,
+	tex[3]->imgptr = mlx_xpm_file_to_image(cube->mlx->mlx, cube->ea,
 		&tex[3]->w, &tex[3]->h);
-	tex[4]->imgptr = mlx_xpm_file_to_image(cube->mlx->mlx, cube->SPRITE,
+	tex[4]->imgptr = mlx_xpm_file_to_image(cube->mlx->mlx, cube->sprite_p,
 		&tex[4]->w, &tex[4]->h);
 	check_texture(cube);
 	load_image_texture(cube);

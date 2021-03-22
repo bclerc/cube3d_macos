@@ -6,7 +6,7 @@
 /*   By: bclerc <bclerc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/08 11:38:52 by bclerc            #+#    #+#             */
-/*   Updated: 2021/03/18 14:50:17 by bclerc           ###   ########.fr       */
+/*   Updated: 2021/03/18 19:48:54 by bclerc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,11 +29,11 @@ void
 void
 	kill_c(t_cube *cube)
 {
-	free(cube->WE);
-	free(cube->NO);
-	free(cube->SO);
-	free(cube->EA);
-	free(cube->SPRITE);
+	free(cube->we);
+	free(cube->no);
+	free(cube->so);
+	free(cube->ea);
+	free(cube->sprite);
 }
 
 void

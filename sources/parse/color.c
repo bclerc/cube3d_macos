@@ -6,7 +6,7 @@
 /*   By: bclerc <bclerc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/08 14:16:44 by bclerc            #+#    #+#             */
-/*   Updated: 2021/03/12 16:49:42 by bclerc           ###   ########.fr       */
+/*   Updated: 2021/03/18 19:48:07 by bclerc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,10 +47,10 @@ int			get_color(t_cube *cube, char *line)
 	tab = ft_strsplit(&line[i], ',');
 	if (line[0] == 'F')
 		set_color(ft_atoi(tab[0]), ft_atoi(tab[1]), ft_atoi(tab[2]),
-		&cube->G_COLOR);
+		&cube->g_color);
 	else
 		set_color(ft_atoi(tab[0]), ft_atoi(tab[1]), ft_atoi(tab[2]),
-		&cube->R_COLOR);
+		&cube->r_color);
 	i = 0;
 	return (1);
 }
